@@ -2,7 +2,7 @@ package pins24.common;
 
 /**
  * Leksikalni simbol.
- * 
+ *
  * @param location Lokacija simbola v izvornem programu.
  * @param symbol   Vrsta simbola.
  * @param lexeme   Znakovna predstavitev simbola.
@@ -13,6 +13,8 @@ public record Token(Report.Location location, Symbol symbol, String lexeme) impl
 	 * Vrste leksikalnih simbolov.
 	 */
 	public enum Symbol {
+		/** Konec datoteke. */
+		EOF,
 		/** Stevilo. */
 		INTCONST,
 		/** Znak. */
@@ -84,9 +86,11 @@ public record Token(Report.Location location, Symbol symbol, String lexeme) impl
 	@Override
 	public String toString() {
 		String lexeme = switch (symbol) {
-		case INTCONST -> "(" + this.lexeme + ")";
-		case IDENTIFIER -> "(" + this.lexeme + ")";
-		default -> "";
+			case INTCONST -> "(" + this.lexeme + ")";
+			case CHARCONST -> "(" + this.lexeme + ")";
+			case STRINGCONST -> "(" + this.lexeme + ")";
+			case IDENTIFIER -> "(" + this.lexeme + ")";
+			default -> "";
 		};
 		return location + " " + symbol + lexeme;
 	}
