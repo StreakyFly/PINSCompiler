@@ -1,0 +1,6 @@
+fun mega_function()
+    while (2 = 5)
+        var 5 = 2
+        mega_function()
+    end
+end
