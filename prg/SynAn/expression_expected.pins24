@@ -1,0 +1,4 @@
+# an expression expected
+fun foo() =
+    if (a && || c) then x = 1
+end

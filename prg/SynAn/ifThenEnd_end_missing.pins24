@@ -1,0 +1,6 @@
+# 'end' for the if statement is missing
+fun foo() = 
+    if (a > b) then
+        while (a > 0) do
+            a = a - 1
+        end

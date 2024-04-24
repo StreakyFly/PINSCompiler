@@ -1,0 +1,5 @@
+# napaka: primerjalni operatorji ne smejo biti asociativni
+fun foo() =
+    if a < b < c then
+        0
+    end

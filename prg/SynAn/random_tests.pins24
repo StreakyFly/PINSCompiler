@@ -1,0 +1,155 @@
+fun foo() = if (a < b) < c then 12 end
+fun foo() = if a < b then 12 end
+fun foo() = if a == (b < c) then 12 end
+fun foo() = if a != b then x = 5, y = 4 end
+
+fun chainCall() =
+    getVal(getVal(5, getVal()))
+
+fun max(a, b, c) =
+    if (a < b) < c then  # this should throw an error if parentheses are removed
+        a
+    else
+        if b < c then
+            b
+        else
+            c
+        end
+    end
+
+var x = 5
+
+fun max(a, b) =
+    if (5 < (3)) < 4 then
+        x = 0
+    else
+        x = 1
+    end
+
+fun square() =
+    let
+        var b = 5
+        var c = 6
+        fun beans() =
+            if x == 2 then
+                b = 0
+            end
+    in
+        while x do
+            x = x - 1
+        end
+    end
+
+fun test() =
+    while 5 do
+        +-+a^^^  # VALID - but postfix is stronger than prefix, so (+(-(+(((a^)^)^))))
+    end
+
+
+# should this be valid, and what would 'a' be in this case? 0? And 'b' 3?
+var a = var b = 3
+var a =
+var b = 3
+
+var test = 2 * 3
+
+
+fun test(ein, zwei)
+    var beans = 65, 20, 17, "test", '\n'
+
+
+fun foo()
+
+fun foo(a, b, c) = 12341234
+fun foo(a) = if (a > (b > c)) then 12 end
+fun foo() =
+    let var bar = 1 in
+        bar != 2
+    end,
+    let fun a(b) in
+        let fun b(a) in
+            a * b = spremenljivka
+        end
+    end,
+    let fun a() fun b() fun c() in 'a' end,
+    if (a > b) then 12,
+        while bar == 12 do
+            "string"=42^,
+            foo(a, c ,b),
+            foo()^
+        end
+    else
+        # aaaaaaaa
+        (a < b) < c,
+        1 + 2 + 3 + 4,
+        ((((!1 + +2) + -3) + ^4) + (5 * 6)),
+        1 % 2 * 5,
+        !(1234 / 3)^,
+        (a <= b) || (a == b) && (a != b) || (a >= b) && (a > b) || (a < b),
+        ^"ja"^
+    end
+
+var string = "test string"
+var char = '\n'
+var int = 1234
+
+# komentar za salo
+# komentar za salo
+var stringstringstring = "test string", "string test", "string"
+var charcharcharchar = 'c', 'h', 'a', 'r'
+var intintint = 123, 456, 789
+
+var string12 = 12 * "string"
+var char12 = 12 * '\A3'
+var int12 = 12 * 0123456789
+var string12char12int12 = 12 * "string", 12 * 'c', 12 * 42
+var a =  # yes, this is actually valid...
+
+
+ fun f1()
+fun f2(a)
+fun f3(a,b,c,d,e)
+fun f4()= x=5
+fun f5() =
+    if 10 > 0 then
+        x = 10
+    end
+fun f6() =
+    if 10 > 0 then
+        x = 10
+    else
+        x = 5
+    end
+fun f7() =
+    while x > 10 do
+        x = x - 1
+        end
+fun f8() =
+    let var a1 = 2 var a2 = 5 in
+        a1 > a2
+        end
+fun f9() =
+    let var a = 0 var b = 10 in
+        if !!is_valid || x > 10 then
+            while a > b do
+                a = a - 1,
+                add(x, y),
+                a = -3 * -x,
+                if x == 10++2 then
+                a = (x + y) * (x - y)
+                end,
+                if x < 0 then "negative" else "non-negative" end,
+                if x > 0 then print("Positive") else print("Non-positive") end,
+                if !z then print("Positive") else print("Non-positive") end,
+                if !z * -w then 'a' end, # komentar
+                if !a == b || c then 'a' + 'b' else
+                if x^ == 4 then 'b' end
+                end,
+                if x * y || y /z || z%w || -z +w || x==y || x<0 || y >= z && (x&& z) && y then x = y end
+            end
+        end,
+    if a == b then
+        a = 20
+        end
+    end
+fun f10()
