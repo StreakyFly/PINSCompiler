@@ -152,6 +152,7 @@ public class LexAn implements AutoCloseable {
 		while (true) {
 			switch (buffChar) {
 				case -1:  // end of file
+					buffToken = new Token(new Report.Location(buffCharLine, buffCharColumn), Token.Symbol.EOF, "EOF");
 					return;
 				case '#':  // comment
 					handleComment();  // skip comment
@@ -204,7 +205,7 @@ public class LexAn implements AutoCloseable {
 		} else if (isValidCharLiteral((char) buffChar)) {  // regular ASCII character
 			charValue = String.valueOf((char) buffChar);
 		} else {
-			throw new Report.Error(new Report.Location(buffCharLine, buffCharColumn, buffCharLine, buffCharColumn + 1) + " Invalid character literal: '" + (char) buffChar + "'" + " (" + buffChar + ")");
+			throw new Report.Error(new Report.Location(buffCharLine, buffCharColumn) + " Invalid character literal: '" + (char) buffChar + "'" + " (" + buffChar + ")");
 		}
 
 		nextChar();  // move past the character or the escape sequence
@@ -235,14 +236,14 @@ public class LexAn implements AutoCloseable {
 				stringValue.append(handleEscapeSequence());
 			} else if (buffChar == '\n' || buffChar == -1) {  // not a written "...\n..." in the string, but an actual new line (Enter)
 				if (stringValue.toString().endsWith("\\\"")) {
-					throw new Report.Error(getLocationRange(startLocation) + " String literal not closed because of the escape sequence: \"" + stringValue);
+					throw new Report.Error(getLocationRange(startLocation) + " String literal not closed because of the escape sequence: '\"" + stringValue + "'");
 				} else {
-					throw new Report.Error(getLocationRange(startLocation) + " String literal not closed: \"" + stringValue);
+					throw new Report.Error(getLocationRange(startLocation) + " String literal not closed: '\"" + stringValue + "'");
 				}
 			} else if (isValidCharLiteral((char) buffChar)) {
 				stringValue.append((char) buffChar);
 			} else {
-				throw new Report.Error(new Report.Location(buffCharLine, buffCharColumn, buffCharLine, buffCharColumn + 1) + " Invalid character in string literal: '" + (char) buffChar + "'" + " (" + buffChar + ")");
+				throw new Report.Error(new Report.Location(buffCharLine, buffCharColumn) + " Invalid character in string literal: '" + (char) buffChar + "'" + " (" + buffChar + ")");
 			}
 			nextChar();
 		}
@@ -292,7 +293,7 @@ public class LexAn implements AutoCloseable {
 			if (isIllegalCharacter(currentChar)) {
 				throw new Report.Error(getLocationRange(startLocation) + " Illegal character: '" + currentChar + "'");
 			} else {  // if a single "&" or "|" was used instead of two
-				throw new Report.Error(getLocationRange(startLocation) + " Incorrectly used character: '" + currentChar + "'");
+				throw new Report.Error(getLocationRange(startLocation) + " Incorrectly used symbol: '" + currentChar + "'" + ". Did you mean '" + currentChar + currentChar + "'?");
 			}
 		}
 	}
@@ -342,7 +343,7 @@ public class LexAn implements AutoCloseable {
 	 */
 	private String handleHexadecimalEscape() {
 		if (Character.digit(buffChar, 16) == -1) {
-			throw new Report.Error(new Report.Location(buffCharLine, buffCharColumn - 1, buffCharLine, buffCharColumn + 1) + " Invalid escape sequence: '\\" + (char) buffChar + "'");
+			throw new Report.Error(new Report.Location(buffCharLine, buffCharColumn - 1, buffCharLine, buffCharColumn + 1) + " Invalid escape sequence: '\\" + (char) buffChar + "...");
 		}
 		String hex = "" + (char) buffChar;
 		nextChar();  // move to the second hexadecimal digit
@@ -409,7 +410,7 @@ public class LexAn implements AutoCloseable {
 	 * @return boolean, ki pove, ali je znak veljaven ali ne.
 	 */
 	private boolean isValidCharLiteral(char c) {
-		return c >= 32 && c <= 126 || c == '\n';
+		return c >= 32 && c <= 126 || c == '\n' || c == '\r';
 	}
 
 	/**
@@ -465,8 +466,10 @@ public class LexAn implements AutoCloseable {
 				Report.warning("Unused arguments in the command line.");
 
 			try (LexAn lexAn = new LexAn(cmdLineArgs[0])) {
-				while (lexAn.peekToken() != null)
+				while (lexAn.peekToken().symbol() != Token.Symbol.EOF) {
 					System.out.println(lexAn.takeToken());
+				}
+				System.out.println(lexAn.takeToken());
 			}
 
 			// Upajmo, da kdaj pridemo do te tocke.
