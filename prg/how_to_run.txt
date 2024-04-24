@@ -1,0 +1,15 @@
+cmd (WSL is needed tho, as bash is ran throught there)
+
+bash test_runner.sh <phase_aka_the_class_name> <dir>
+
+For LexAn, do:
+bash test_runner.sh LexAn LexAn
+
+For SynAn, do:
+bash test_runner.sh SynAn SynAn
+
+
+################### TO-DO #################
+Modify test_runner.sh to be able to run tests for multiple phases.
+So you give it n arguments, each argument being the class you want to run tests for. And maybe also the location, so the logic doesn't changes that much. Or if maybe an argument "ALL" is given, it runs all tests for all phases.
+###########################################
