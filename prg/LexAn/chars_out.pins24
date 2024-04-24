@@ -1,0 +1,11 @@
+This is PINS'24 compiler (lexical analysis):
+[4.1:4.3] CHARCONST('b')
+[5.1:5.4] CHARCONST('\\')
+[6.1:6.4] CHARCONST('\n')
+[7.1:7.4] CHARCONST('\'')
+[8.1:8.3] CHARCONST('2')
+[9.1:9.3] CHARCONST('.')
+[10.1:10.5] CHARCONST('\3A')
+[11.1:11.5] CHARCONST('\09')
+[11.13:11.13] EOF
+:-) Done.

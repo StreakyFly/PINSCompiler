@@ -1,0 +1,5 @@
+This is PINS'24 compiler (lexical analysis):
+[2.1:2.15] IDENTIFIER(nedokoncan_znak)
+[2.17:2.17] ASSIGN
+:-( [2.20:2.23] Invalid/Incomplete hexadecimal escape sequence: '\8
+'

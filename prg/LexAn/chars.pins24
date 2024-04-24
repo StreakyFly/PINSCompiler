@@ -1,0 +1,11 @@
+# for some reason tests want two empty lines/comments before using an escape sequence
+# otherwise they say test failed, yet show the same output...
+# chars
+'b'
+'\\'
+'\n'
+'\''
+'2'
+'.'
+'\3A'
+'\09'  # tab

@@ -1,0 +1,10 @@
+# strings
+"beans"
+"\3Abeans\4F"
+"TEST\\nTEST"
+""
+"\n"
+"TOMATO\nTOMATO"
+"\n\n\nHI\n\n\n"
+"test\"Yeah"
+"\\"
