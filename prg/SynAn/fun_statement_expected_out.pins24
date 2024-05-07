@@ -1,2 +1,2 @@
 This is PINS'24 compiler (syntax analysis):
-:-( [[2.12:2.12]] A statement expected.
+:-( [[2.12:2.12]] A statement expected (IF, WHILE, LET, or an expression).

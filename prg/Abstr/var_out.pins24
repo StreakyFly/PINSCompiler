@@ -1,0 +1,7 @@
+This is PINS'24 compiler (abstract syntax):
+Program:
+  VarDef x [1.1:1.9]
+    Inits:
+      Init 1* [1.9:1.9]
+        AtomExpr 1 [1.9:1.9]
+:-) Done.

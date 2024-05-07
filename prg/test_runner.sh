@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# TODO - update the scirpt, so it can run tests for multiple phases one after another (LexAn, SynAn, ...).
-
-# Java version: 17
+# Java version: 21
 
 # This script runs the tests for the PINS24 project.
 # The script takes a path to a test file or directory as an argument.
@@ -46,7 +44,11 @@ function run_test {
 
     # run java project in ../out catch error too
     java -p ../out/production/pins24 -m pins24/pins24.phase.$1 $2 > /tmp/test_output.pins24 2>&1
-    diff -q /tmp/test_output.pins24 $3 > /dev/null
+
+    # Strip ANSI codes from the test output - WARNING, this could cause incorrect TEST FAILED messages! if ANSI codes are included in test.pins24 strings
+    sed 's/\x1b\[1m//g; s/\x1b\[0m//g' /tmp/test_output.pins24 > /tmp/stripped_test_output.pins24
+    
+    diff -q /tmp/stripped_test_output.pins24 $3 > /dev/null
 
     # check if the test passed
     if [ $? -eq 0 ]; then
@@ -55,12 +57,12 @@ function run_test {
         echo_color "red" "   X Test failed"
 
         echo_color "yellow" "   └ Expected output (left) and actual output (right):"
-        diff -y $3 /tmp/test_output.pins24
+        diff -y $3 /tmp/stripped_test_output.pins24
         echo ""
     fi
 
-    # remove the output file
-    rm /tmp/test_output.pins24
+    # remove the output files
+    rm /tmp/test_output.pins24 /tmp/stripped_test_output.pins24
 }
 
 function is_output_file {

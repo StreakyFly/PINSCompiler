@@ -4,4 +4,5 @@
  * @author bostjan.slivnik@fri.uni-lj.si
  */
 module pins24 {
+    requires jdk.unsupported.desktop;
 }

@@ -1,2 +1,2 @@
 This is PINS'24 compiler (syntax analysis):
-:-( [[3.14:3.15]] An expression expected.
+:-( [[3.14:3.15]] A primary expression expected (INTCONST, CHARCONST, STRINGCONST, IDENTIFIER, or LPAREN).
