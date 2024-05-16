@@ -3,5 +3,5 @@ Program:
   VarDef x [1.1:1.9]
     Inits:
       Init 1* [1.9:1.9]
-        AtomExpr 1 [1.9:1.9]
+        AtomExpr INTCONST(1) [1.9:1.9]
 :-) Done.

@@ -1,0 +1,365 @@
+This is PINS'24 compiler (semantic analysis):
+Program:
+  VarDef n [6.1:6.7]
+    Inits:
+      Init 1* [0.0:0.0]
+        AtomExpr INTCONST(0) [0.0:0.0]
+  VarDef m [7.1:7.7]
+    Inits:
+      Init 1* [0.0:0.0]
+        AtomExpr INTCONST(0) [0.0:0.0]
+  FunDef test0 [9.1:9.34]
+    Pars:
+      ParDef i [9.11:9.11]
+    Stmts:
+      AssignStmt [9.16:9.31]
+        UnExpr VALUEAT [9.16:9.27] lval
+          BinExpr ADD [9.16:9.26]
+            NameExpr a [9.17:9.17] def@[24.1:24.9] lval
+            BinExpr MUL [9.21:9.25]
+              AtomExpr INTCONST(4) [9.21:9.21]
+              NameExpr i [9.25:9.25] def@[9.11:9.11] lval
+        AtomExpr INTCONST(3) [9.31:9.31]
+      ExprStmt [9.34:9.34]
+        AtomExpr INTCONST(1) [9.34:9.34]
+  FunDef test00 [10.1:10.17]
+    Pars:
+    Stmts:
+      ExprStmt [10.16:10.17]
+        UnExpr MEMADDR [10.16:10.17]
+          NameExpr n [10.17:10.17] def@[6.1:6.7] lval
+  FunDef test4 [15.1:15.23]
+    Pars:
+    Stmts:
+      AssignStmt [15.15:15.20]
+        NameExpr n [15.15:15.15] def@[6.1:6.7] lval
+        UnExpr MEMADDR [15.19:15.20]
+          NameExpr m [15.20:15.20] def@[7.1:7.7] lval
+      ExprStmt [15.23:15.23]
+        AtomExpr INTCONST(1) [15.23:15.23]
+  FunDef test5 [16.1:16.23]
+    Pars:
+    Stmts:
+      AssignStmt [16.15:16.20]
+        NameExpr n [16.15:16.15] def@[6.1:6.7] lval
+        UnExpr VALUEAT [16.19:16.20] lval
+          AtomExpr INTCONST(8) [16.19:16.19]
+      ExprStmt [16.23:16.23]
+        AtomExpr INTCONST(1) [16.23:16.23]
+  FunDef test6 [17.1:17.23]
+    Pars:
+    Stmts:
+      AssignStmt [17.15:17.20]
+        UnExpr VALUEAT [17.15:17.16] lval
+          NameExpr m [17.15:17.15] def@[7.1:7.7] lval
+        AtomExpr INTCONST(3) [17.20:17.20]
+      ExprStmt [17.23:17.23]
+        AtomExpr INTCONST(1) [17.23:17.23]
+  FunDef test7 [18.1:18.23]
+    Pars:
+    Stmts:
+      AssignStmt [18.15:18.20]
+        NameExpr n [18.15:18.15] def@[6.1:6.7] lval
+        UnExpr VALUEAT [18.19:18.20] lval
+          NameExpr m [18.19:18.19] def@[7.1:7.7] lval
+      ExprStmt [18.23:18.23]
+        AtomExpr INTCONST(1) [18.23:18.23]
+  FunDef test8 [19.1:19.37]
+    Pars:
+    Stmts:
+      IfStmt [19.15:19.34]
+        BinExpr EQU [19.18:19.23]
+          NameExpr n [19.18:19.18] def@[6.1:6.7] lval
+          AtomExpr INTCONST(5) [19.23:19.23]
+        IfThenStmts:
+          ExprStmt [19.30:19.30]
+            AtomExpr INTCONST(0) [19.30:19.30]
+        IfElseStmts:
+      ExprStmt [19.37:19.37]
+        AtomExpr INTCONST(1) [19.37:19.37]
+  FunDef test9 [20.1:20.38]
+    Pars:
+    Stmts:
+      IfStmt [20.15:20.35]
+        BinExpr EQU [20.18:20.24]
+          UnExpr MEMADDR [20.18:20.19]
+            NameExpr n [20.19:20.19] def@[6.1:6.7] lval
+          AtomExpr INTCONST(8) [20.24:20.24]
+        IfThenStmts:
+          ExprStmt [20.31:20.31]
+            AtomExpr INTCONST(0) [20.31:20.31]
+        IfElseStmts:
+      ExprStmt [20.38:20.38]
+        AtomExpr INTCONST(1) [20.38:20.38]
+  FunDef test11 [22.1:22.30]
+    Pars:
+    Stmts:
+      AssignStmt [22.16:22.27]
+        UnExpr VALUEAT [22.16:22.23] lval
+          BinExpr GTH [22.16:22.22]
+            NameExpr c [22.17:22.17] def@[25.1:25.10] lval
+            AtomExpr INTCONST(3) [22.21:22.21]
+        AtomExpr INTCONST(5) [22.27:22.27]
+      ExprStmt [22.30:22.30]
+        AtomExpr INTCONST(1) [22.30:22.30]
+  VarDef a [24.1:24.9]
+    Inits:
+      Init 1* [24.9:24.9]
+        AtomExpr INTCONST(3) [24.9:24.9]
+  VarDef c [25.1:25.10]
+    Inits:
+      Init 1* [25.9:25.10]
+        AtomExpr INTCONST(10) [25.9:25.10]
+  FunDef deez [26.1:26.18]
+    Pars:
+      ParDef b [26.10:26.10]
+    Stmts:
+      ExprStmt [26.15:26.15]
+        AtomExpr INTCONST(3) [26.15:26.15]
+      ExprStmt [26.18:26.18]
+        AtomExpr INTCONST(1) [26.18:26.18]
+  FunDef test [27.1:27.37]
+    Pars:
+      ParDef a [27.10:27.10]
+      ParDef b [27.13:27.13]
+      ParDef c [27.16:27.16]
+    Stmts:
+      ExprStmt [27.21:27.27]
+        CallExpr deez [27.21:27.27] def@[26.1:26.18]
+          Args:
+            NameExpr b [27.26:27.26] def@[27.13:27.13] lval
+      ExprStmt [27.30:27.37]
+        AtomExpr STRCONST("string") [27.30:27.37]
+  FunDef beans [28.1:28.26]
+    Pars:
+      ParDef b [28.11:28.11]
+    Stmts:
+      ExprStmt [28.16:28.23]
+        CallExpr beans [28.16:28.23] def@[28.1:28.26]
+          Args:
+            AtomExpr INTCONST(3) [28.22:28.22]
+      ExprStmt [28.26:28.26]
+        AtomExpr INTCONST(1) [28.26:28.26]
+  FunDef f [29.1:29.37]
+    Pars:
+      ParDef b [29.7:29.7]
+    Stmts:
+      AssignStmt [29.12:29.34]
+        UnExpr VALUEAT [29.12:29.23] lval
+          BinExpr ADD [29.12:29.22]
+            BinExpr MUL [29.13:29.17]
+              NameExpr a [29.13:29.13] def@[24.1:24.9] lval
+              AtomExpr INTCONST(4) [29.17:29.17]
+            AtomExpr INTCONST(3) [29.21:29.21]
+        UnExpr VALUEAT [29.27:29.34] lval
+          BinExpr ADD [29.27:29.33]
+            NameExpr a [29.28:29.28] def@[24.1:24.9] lval
+            AtomExpr INTCONST(3) [29.32:29.32]
+      ExprStmt [29.37:29.37]
+        AtomExpr INTCONST(1) [29.37:29.37]
+  FunDef g [30.1:30.20]
+    Pars:
+      ParDef b [30.7:30.7]
+    Stmts:
+      AssignStmt [30.12:30.17]
+        UnExpr VALUEAT [30.12:30.13] lval
+          NameExpr a [30.12:30.12] def@[24.1:24.9] lval
+        AtomExpr INTCONST(4) [30.17:30.17]
+      ExprStmt [30.20:30.20]
+        AtomExpr INTCONST(1) [30.20:30.20]
+  FunDef h [31.1:31.19]
+    Pars:
+      ParDef b [31.7:31.7]
+    Stmts:
+      AssignStmt [31.12:31.16]
+        NameExpr a [31.12:31.12] def@[24.1:24.9] lval
+        NameExpr b [31.16:31.16] def@[31.7:31.7] lval
+      ExprStmt [31.19:31.19]
+        AtomExpr INTCONST(1) [31.19:31.19]
+  FunDef i [32.1:32.19]
+    Pars:
+      ParDef b [32.7:32.7]
+    Stmts:
+      AssignStmt [32.12:32.16]
+        NameExpr a [32.12:32.12] def@[24.1:24.9] lval
+        AtomExpr INTCONST(3) [32.16:32.16]
+      ExprStmt [32.19:32.19]
+        AtomExpr INTCONST(1) [32.19:32.19]
+  FunDef j [33.1:33.26]
+    Pars:
+      ParDef b [33.7:33.7]
+    Stmts:
+      AssignStmt [33.12:33.23]
+        UnExpr VALUEAT [33.12:33.19] lval
+          BinExpr ADD [33.12:33.18]
+            NameExpr a [33.13:33.13] def@[24.1:24.9] lval
+            NameExpr c [33.17:33.17] def@[25.1:25.10] lval
+        AtomExpr INTCONST(3) [33.23:33.23]
+      ExprStmt [33.26:33.26]
+        AtomExpr INTCONST(1) [33.26:33.26]
+  FunDef k [34.1:34.31]
+    Pars:
+      ParDef b [34.7:34.7]
+    Stmts:
+      AssignStmt [34.12:34.29]
+        UnExpr VALUEAT [34.12:34.13] lval
+          NameExpr a [34.12:34.12] def@[24.1:24.9] lval
+        BinExpr ADD [34.17:34.29]
+          NameExpr b [34.17:34.17] def@[34.7:34.7] lval
+          UnExpr VALUEAT [34.21:34.29] lval
+            BinExpr ADD [34.21:34.28]
+              NameExpr a [34.22:34.22] def@[24.1:24.9] lval
+              AtomExpr INTCONST(10) [34.26:34.27]
+      ExprStmt [34.31:34.31]
+        AtomExpr INTCONST(1) [34.31:34.31]
+  FunDef l [35.1:35.22]
+    Pars:
+      ParDef b [35.7:35.7]
+    Stmts:
+      AssignStmt [35.12:35.19]
+        UnExpr VALUEAT [35.12:35.13] lval
+          AtomExpr INTCONST(4) [35.12:35.12]
+        BinExpr ADD [35.17:35.19]
+          NameExpr c [35.17:35.17] def@[25.1:25.10] lval
+          NameExpr b [35.19:35.19] def@[35.7:35.7] lval
+      ExprStmt [35.22:35.22]
+        AtomExpr INTCONST(1) [35.22:35.22]
+  FunDef mm [36.1:36.40]
+    Pars:
+      ParDef b [36.8:36.8]
+    Stmts:
+      IfStmt [36.13:36.37]
+        BinExpr EQU [36.16:36.21]
+          NameExpr a [36.16:36.16] def@[24.1:24.9] lval
+          AtomExpr INTCONST(5) [36.21:36.21]
+        IfThenStmts:
+          AssignStmt [36.28:36.33]
+            UnExpr VALUEAT [36.28:36.29] lval
+              NameExpr c [36.28:36.28] def@[25.1:25.10] lval
+            AtomExpr INTCONST(3) [36.33:36.33]
+        IfElseStmts:
+      ExprStmt [36.40:36.40]
+        AtomExpr INTCONST(1) [36.40:36.40]
+  FunDef nn [37.1:37.50]
+    Pars:
+      ParDef b [37.8:37.8]
+    Stmts:
+      IfStmt [37.13:37.48]
+        BinExpr NEQ [37.16:37.21]
+          NameExpr a [37.16:37.16] def@[24.1:24.9] lval
+          AtomExpr INTCONST(3) [37.21:37.21]
+        IfThenStmts:
+          AssignStmt [37.28:37.32]
+            NameExpr c [37.28:37.28] def@[25.1:25.10] lval
+            AtomExpr INTCONST(4) [37.32:37.32]
+        IfElseStmts:
+          AssignStmt [37.39:37.44]
+            NameExpr a [37.39:37.39] def@[24.1:24.9] lval
+            UnExpr VALUEAT [37.43:37.44] lval
+              NameExpr c [37.43:37.43] def@[25.1:25.10] lval
+      ExprStmt [37.50:37.50]
+        AtomExpr INTCONST(1) [37.50:37.50]
+  FunDef o [38.1:38.55]
+    Pars:
+      ParDef b [38.7:38.7]
+    Stmts:
+      WhileStmt [38.12:38.52]
+        BinExpr EQU [38.18:38.23]
+          AtomExpr INTCONST(3) [38.18:38.18]
+          AtomExpr INTCONST(1) [38.23:38.23]
+        WhileStmts:
+          AssignStmt [38.28:38.32]
+            NameExpr a [38.28:38.28] def@[24.1:24.9] lval
+            AtomExpr INTCONST(5) [38.32:38.32]
+          AssignStmt [38.35:38.40]
+            UnExpr VALUEAT [38.35:38.36] lval
+              NameExpr b [38.35:38.35] def@[38.7:38.7] lval
+            AtomExpr INTCONST(3) [38.40:38.40]
+          AssignStmt [38.43:38.48]
+            NameExpr c [38.43:38.43] def@[25.1:25.10] lval
+            UnExpr VALUEAT [38.47:38.48] lval
+              AtomExpr INTCONST(4) [38.47:38.47]
+      ExprStmt [38.55:38.55]
+        AtomExpr INTCONST(1) [38.55:38.55]
+  FunDef p [39.1:39.65]
+    Pars:
+      ParDef b [39.7:39.7]
+    Stmts:
+      WhileStmt [39.12:39.62]
+        BinExpr EQU [39.18:39.23]
+          NameExpr a [39.18:39.18] def@[24.1:24.9] lval
+          AtomExpr INTCONST(3) [39.23:39.23]
+        WhileStmts:
+          AssignStmt [39.28:39.36]
+            NameExpr b [39.28:39.28] def@[39.7:39.7] lval
+            BinExpr ADD [39.32:39.36]
+              AtomExpr INTCONST(5) [39.32:39.32]
+              NameExpr a [39.36:39.36] def@[24.1:24.9] lval
+          AssignStmt [39.39:39.50]
+            UnExpr VALUEAT [39.39:39.46] lval
+              BinExpr ADD [39.39:39.45]
+                NameExpr b [39.40:39.40] def@[39.7:39.7] lval
+                AtomExpr INTCONST(4) [39.44:39.44]
+            AtomExpr INTCONST(3) [39.50:39.50]
+          AssignStmt [39.53:39.58]
+            UnExpr VALUEAT [39.53:39.54] lval
+              NameExpr c [39.53:39.53] def@[25.1:25.10] lval
+            AtomExpr INTCONST(4) [39.58:39.58]
+      ExprStmt [39.65:39.65]
+        AtomExpr INTCONST(1) [39.65:39.65]
+  FunDef r [41.1:46.10]
+    Pars:
+      ParDef b [41.7:41.7]
+    Stmts:
+      LetStmt [41.12:46.7]
+        LetDefs:
+          VarDef a [42.5:42.13]
+            Inits:
+              Init 1* [42.13:42.13]
+                AtomExpr INTCONST(3) [42.13:42.13]
+          FunDef c [43.5:43.49]
+            Pars:
+              ParDef b [43.11:43.11]
+            Stmts:
+              AssignStmt [43.16:43.20]
+                NameExpr a [43.16:43.16] def@[42.5:42.13] lval
+                AtomExpr INTCONST(5) [43.20:43.20]
+              AssignStmt [43.23:43.28]
+                UnExpr VALUEAT [43.23:43.24] lval
+                  NameExpr b [43.23:43.23] def@[43.11:43.11] lval
+                AtomExpr INTCONST(4) [43.28:43.28]
+              AssignStmt [43.31:43.47]
+                UnExpr VALUEAT [43.31:43.36] lval
+                  BinExpr ADD [43.31:43.35]
+                    NameExpr a [43.32:43.32] def@[42.5:42.13] lval
+                    AtomExpr INTCONST(3) [43.34:43.34]
+                UnExpr VALUEAT [43.40:43.47] lval
+                  BinExpr ADD [43.40:43.46]
+                    AtomExpr INTCONST(5) [43.41:43.41]
+                    AtomExpr INTCONST(2) [43.45:43.45]
+              ExprStmt [43.49:43.49]
+                AtomExpr INTCONST(1) [43.49:43.49]
+        LetStmts:
+          AssignStmt [45.9:45.13]
+            NameExpr b [45.9:45.9] def@[41.7:41.7] lval
+            AtomExpr INTCONST(4) [45.13:45.13]
+          AssignStmt [45.16:45.21]
+            UnExpr VALUEAT [45.16:45.17] lval
+              NameExpr a [45.16:45.16] def@[42.5:42.13] lval
+            AtomExpr INTCONST(3) [45.21:45.21]
+          AssignStmt [45.24:45.33]
+            UnExpr VALUEAT [45.24:45.29] lval
+              BinExpr ADD [45.24:45.28]
+                AtomExpr INTCONST(3) [45.25:45.25]
+                AtomExpr INTCONST(4) [45.27:45.27]
+            AtomExpr INTCONST(6) [45.33:45.33]
+      ExprStmt [46.10:46.10]
+        AtomExpr INTCONST(1) [46.10:46.10]
+  FunDef s [49.1:49.18]
+    Pars:
+      ParDef b [49.7:49.7]
+    Stmts:
+      ExprStmt [49.12:49.18]
+        UnExpr SUB [49.12:49.18]
+          AtomExpr STRCONST("test") [49.13:49.18]
+:-) Done.

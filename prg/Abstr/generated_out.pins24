@@ -7,7 +7,7 @@ Program:
   VarDef D [4.1:4.7]
     Inits:
       Init 1* [0.0:0.0]
-        AtomExpr 0 [0.0:0.0]
+        AtomExpr INTCONST(0) [0.0:0.0]
   FunDef PHjC_ [5.1:5.12]
     Pars:
       ParDef J [5.11:5.11]
@@ -15,20 +15,20 @@ Program:
   VarDef t [6.1:6.30]
     Inits:
       Init 2224* [6.9:6.20]
-        AtomExpr '\78' [6.16:6.20]
+        AtomExpr CHRCONST('\78') [6.16:6.20]
       Init 1* [6.23:6.30]
-        AtomExpr ")\6BC)" [6.23:6.30]
+        AtomExpr STRCONST(")\6BC)") [6.23:6.30]
   FunDef s [7.1:7.46]
     Pars:
       ParDef _d [7.7:7.8]
     Stmts:
       IfStmt [7.13:7.46]
         UnExpr SUB [7.16:7.19]
-          AtomExpr 800 [7.17:7.19]
+          AtomExpr INTCONST(800) [7.17:7.19]
         IfThenStmts:
           ExprStmt [7.26:7.42]
             BinExpr AND [7.26:7.42]
-              AtomExpr "X" [7.27:7.29]
+              AtomExpr STRCONST("X") [7.27:7.29]
               CallExpr aE_Te [7.32:7.41]
                 Args:
                   NameExpr u_5 [7.38:7.40]
@@ -36,9 +36,9 @@ Program:
   VarDef __8o_ [8.1:8.32]
     Inits:
       Init 2* [8.13:8.22]
-        AtomExpr ".\C6" [8.17:8.22]
+        AtomExpr STRCONST(".\C6") [8.17:8.22]
       Init 35* [8.25:8.32]
-        AtomExpr 'O' [8.30:8.32]
+        AtomExpr CHRCONST('O') [8.30:8.32]
   FunDef u7g [9.1:9.2965]
     Pars:
       ParDef r [9.9:9.9]
@@ -52,15 +52,15 @@ Program:
               VarDef m [9.36:9.45]
                 Inits:
                   Init 1* [9.44:9.45]
-                    AtomExpr 46 [9.44:9.45]
+                    AtomExpr INTCONST(46) [9.44:9.45]
               VarDef hD [9.47:9.54]
                 Inits:
                   Init 1* [0.0:0.0]
-                    AtomExpr 0 [0.0:0.0]
+                    AtomExpr INTCONST(0) [0.0:0.0]
               VarDef _7j2 [9.57:9.66]
                 Inits:
                   Init 1* [0.0:0.0]
-                    AtomExpr 0 [0.0:0.0]
+                    AtomExpr INTCONST(0) [0.0:0.0]
               FunDef IVB_ [9.69:9.83]
                 Pars:
                   ParDef kiJkT [9.78:9.82]
@@ -68,7 +68,7 @@ Program:
               VarDef _RD [9.85:9.103]
                 Inits:
                   Init 1* [9.95:9.103]
-                    AtomExpr "o\2E#rN" [9.95:9.103]
+                    AtomExpr STRCONST("o\2E#rN") [9.95:9.103]
               FunDef p8W [9.105:9.1243]
                 Pars:
                   ParDef gel [9.113:9.115]
@@ -177,49 +177,49 @@ Program:
                                 Stmts:
                             LetStmts:
                               ExprStmt [9.496:9.506]
-                                AtomExpr "\94\n\"UZ" [9.496:9.506]
+                                AtomExpr STRCONST("\94\n\"UZ") [9.496:9.506]
                       VarDef f_ [9.512:9.519]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef MYC [9.522:9.582]
                         Pars:
                         Stmts:
                           IfStmt [9.534:9.582]
                             CallExpr _Z9Q [9.537:9.558]
                               Args:
-                                AtomExpr "v\99\60\BC" [9.542:9.553]
+                                AtomExpr STRCONST("v\99\60\BC") [9.542:9.553]
                                 NameExpr PF [9.556:9.557]
                             IfThenStmts:
                               ExprStmt [9.565:9.569]
                                 CallExpr _ [9.565:9.569]
                                   Args:
-                                    AtomExpr 85 [9.567:9.568]
+                                    AtomExpr INTCONST(85) [9.567:9.568]
                             IfElseStmts:
                               ExprStmt [9.576:9.578]
                                 NameExpr __E [9.576:9.578]
                       VarDef eDd [9.584:9.601]
                         Inits:
                           Init 934* [9.594:9.601]
-                            AtomExpr 08 [9.600:9.601]
+                            AtomExpr INTCONST(08) [9.600:9.601]
                       FunDef G_29 [9.603:9.637]
                         Pars:
                         Stmts:
                           WhileStmt [9.616:9.637]
-                            AtomExpr 5887 [9.622:9.625]
+                            AtomExpr INTCONST(5887) [9.622:9.625]
                             WhileStmts:
                               ExprStmt [9.630:9.633]
                                 NameExpr V_R7 [9.630:9.633]
                       VarDef mR [9.639:9.667]
                         Inits:
                           Init 9* [9.648:9.655]
-                            AtomExpr 0997 [9.652:9.655]
+                            AtomExpr INTCONST(0997) [9.652:9.655]
                           Init 1* [9.658:9.667]
-                            AtomExpr "\CF\AE\"" [9.658:9.667]
+                            AtomExpr STRCONST("\CF\AE\"") [9.658:9.667]
                       VarDef y48 [9.669:9.677]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef Z5H [9.680:9.703]
                         Pars:
                         Stmts:
@@ -239,27 +239,27 @@ Program:
                           ParDef T_p1W [9.735:9.739]
                         Stmts:
                           AssignStmt [9.744:9.753]
-                            AtomExpr 470 [9.744:9.746]
-                            AtomExpr 1662 [9.750:9.753]
+                            AtomExpr INTCONST(470) [9.744:9.746]
+                            AtomExpr INTCONST(1662) [9.750:9.753]
                       FunDef I [9.755:9.776]
                         Pars:
                           ParDef Eq_7 [9.761:9.764]
                         Stmts:
                           AssignStmt [9.769:9.776]
                             NameExpr Va [9.769:9.770]
-                            AtomExpr "h" [9.774:9.776]
+                            AtomExpr STRCONST("h") [9.774:9.776]
                       VarDef M70U_ [9.778:9.807]
                         Inits:
                           Init 1* [9.790:9.795]
-                            AtomExpr "FnJ^" [9.790:9.795]
+                            AtomExpr STRCONST("FnJ^") [9.790:9.795]
                           Init 6208* [9.798:9.807]
-                            AtomExpr 869 [9.805:9.807]
+                            AtomExpr INTCONST(869) [9.805:9.807]
                       VarDef __w [9.809:9.834]
                         Inits:
                           Init 92* [9.819:9.828]
-                            AtomExpr '\48' [9.824:9.828]
+                            AtomExpr CHRCONST('\48') [9.824:9.828]
                           Init 1* [9.831:9.834]
-                            AtomExpr 5551 [9.831:9.834]
+                            AtomExpr INTCONST(5551) [9.831:9.834]
                       FunDef _9_ [9.836:9.844]
                         Pars:
                         Stmts:
@@ -270,13 +270,13 @@ Program:
                       VarDef OZ_H7 [9.861:9.886]
                         Inits:
                           Init 6* [9.873:9.878]
-                            AtomExpr 38 [9.877:9.878]
+                            AtomExpr INTCONST(38) [9.877:9.878]
                           Init 0* [9.881:9.886]
-                            AtomExpr 84 [9.885:9.886]
+                            AtomExpr INTCONST(84) [9.885:9.886]
                       VarDef h__ [9.888:9.896]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef RR [9.899:9.1206]
                         Pars:
                           ParDef _ [9.906:9.906]
@@ -364,13 +364,13 @@ Program:
                                 Stmts:
                             LetStmts:
                               ExprStmt [9.1202:9.1202]
-                                AtomExpr 8 [9.1202:9.1202]
+                                AtomExpr INTCONST(8) [9.1202:9.1202]
                     LetStmts:
                       IfStmt [9.1211:9.1239]
                         NameExpr W9h [9.1214:9.1216]
                         IfThenStmts:
                           ExprStmt [9.1223:9.1226]
-                            AtomExpr '\'' [9.1223:9.1226]
+                            AtomExpr CHRCONST('\'') [9.1223:9.1226]
                         IfElseStmts:
                           ExprStmt [9.1233:9.1235]
                             NameExpr odh [9.1233:9.1235]
@@ -380,7 +380,7 @@ Program:
               VarDef ____f [9.1254:9.1278]
                 Inits:
                   Init 73* [9.1266:9.1278]
-                    AtomExpr "\n\3F<" [9.1271:9.1278]
+                    AtomExpr STRCONST("\n\3F<") [9.1271:9.1278]
               FunDef IFJ_ [9.1280:9.1324]
                 Pars:
                   ParDef _____ [9.1289:9.1293]
@@ -390,20 +390,20 @@ Program:
                     NameExpr M__c [9.1306:9.1309]
                     IfThenStmts:
                       ExprStmt [9.1316:9.1320]
-                        AtomExpr 15765 [9.1316:9.1320]
+                        AtomExpr INTCONST(15765) [9.1316:9.1320]
                     IfElseStmts:
               VarDef __c_ [9.1326:9.1363]
                 Inits:
                   Init 0494* [9.1337:9.1348]
-                    AtomExpr 86805 [9.1344:9.1348]
+                    AtomExpr INTCONST(86805) [9.1344:9.1348]
                   Init 58470* [9.1351:9.1363]
-                    AtomExpr '\67' [9.1359:9.1363]
+                    AtomExpr CHRCONST('\67') [9.1359:9.1363]
               VarDef RM_ [9.1365:9.1393]
                 Inits:
                   Init 70* [9.1375:9.1381]
-                    AtomExpr 66 [9.1380:9.1381]
+                    AtomExpr INTCONST(66) [9.1380:9.1381]
                   Init 371* [9.1384:9.1393]
-                    AtomExpr 9666 [9.1390:9.1393]
+                    AtomExpr INTCONST(9666) [9.1390:9.1393]
               FunDef M2y [9.1395:9.1405]
                 Pars:
                   ParDef _A [9.1403:9.1404]
@@ -411,13 +411,13 @@ Program:
               VarDef N_u [9.1407:9.1439]
                 Inits:
                   Init 8135* [9.1417:9.1425]
-                    AtomExpr 29 [9.1424:9.1425]
+                    AtomExpr INTCONST(29) [9.1424:9.1425]
                   Init 53* [9.1428:9.1439]
-                    AtomExpr "L\1F9" [9.1433:9.1439]
+                    AtomExpr STRCONST("L\1F9") [9.1433:9.1439]
               VarDef _Dz88 [9.1441:9.1451]
                 Inits:
                   Init 1* [0.0:0.0]
-                    AtomExpr 0 [0.0:0.0]
+                    AtomExpr INTCONST(0) [0.0:0.0]
               FunDef wh_g [9.1454:9.1468]
                 Pars:
                   ParDef B [9.1463:9.1463]
@@ -436,10 +436,10 @@ Program:
                             NameExpr K [9.1505:9.1505]
                             IfThenStmts:
                               ExprStmt [9.1512:9.1514]
-                                AtomExpr 'D' [9.1512:9.1514]
+                                AtomExpr CHRCONST('D') [9.1512:9.1514]
                             IfElseStmts:
                               ExprStmt [9.1521:9.1524]
-                                AtomExpr '\'' [9.1521:9.1524]
+                                AtomExpr CHRCONST('\'') [9.1521:9.1524]
                       FunDef G__Q_ [9.1530:9.1848]
                         Pars:
                         Stmts:
@@ -537,21 +537,21 @@ Program:
                       VarDef D3atL [9.1850:9.1875]
                         Inits:
                           Init 1* [9.1862:9.1875]
-                            AtomExpr "\A4m\01\n\7E" [9.1862:9.1875]
+                            AtomExpr STRCONST("\A4m\01\n\7E") [9.1862:9.1875]
                       VarDef M [9.1877:9.1883]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       VarDef ZK [9.1886:9.1893]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       VarDef _ [9.1896:9.1921]
                         Inits:
                           Init 1* [9.1904:9.1910]
-                            AtomExpr "\\\BA" [9.1904:9.1910]
+                            AtomExpr STRCONST("\\\BA") [9.1904:9.1910]
                           Init 1* [9.1913:9.1921]
-                            AtomExpr "\\\"\95" [9.1913:9.1921]
+                            AtomExpr STRCONST("\\\"\95") [9.1913:9.1921]
                       FunDef G [9.1923:9.1964]
                         Pars:
                           ParDef a9AS [9.1929:9.1932]
@@ -561,20 +561,20 @@ Program:
                             NameExpr Y_m [9.1945:9.1947]
                             IfThenStmts:
                               ExprStmt [9.1954:9.1960]
-                                AtomExpr "<BJ`K" [9.1954:9.1960]
+                                AtomExpr STRCONST("<BJ`K") [9.1954:9.1960]
                             IfElseStmts:
                       VarDef t8 [9.1966:9.1973]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       VarDef _XNGz [9.1976:9.1986]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       VarDef X7y5 [9.1989:9.1998]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef _ [9.2001:9.2007]
                         Pars:
                         Stmts:
@@ -584,8 +584,8 @@ Program:
                           ParDef Ks3_ [9.2023:9.2026]
                         Stmts:
                           AssignStmt [9.2031:9.2037]
-                            AtomExpr 6 [9.2031:9.2031]
-                            AtomExpr 326 [9.2035:9.2037]
+                            AtomExpr INTCONST(6) [9.2031:9.2031]
+                            AtomExpr INTCONST(326) [9.2035:9.2037]
                       FunDef N [9.2039:9.2045]
                         Pars:
                         Stmts:
@@ -684,7 +684,7 @@ Program:
                       VarDef __G_ [9.2357:9.2366]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef ___fq [9.2369:9.2679]
                         Pars:
                         Stmts:
@@ -777,7 +777,7 @@ Program:
                               ExprStmt [9.2670:9.2675]
                                 CallExpr _ [9.2670:9.2675]
                                   Args:
-                                    AtomExpr 465 [9.2672:9.2674]
+                                    AtomExpr INTCONST(465) [9.2672:9.2674]
                       FunDef LB [9.2681:9.2696]
                         Pars:
                           ParDef U_J_ [9.2688:9.2691]
@@ -786,11 +786,11 @@ Program:
                       VarDef q [9.2698:9.2704]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       VarDef L3b59 [9.2707:9.2717]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                     LetStmts:
                       ExprStmt [9.2723:9.2727]
                         NameExpr G__cS [9.2723:9.2727]
@@ -801,20 +801,20 @@ Program:
                   IfStmt [9.2745:9.2835]
                     CallExpr _c [9.2748:9.2785]
                       Args:
-                        AtomExpr ';' [9.2752:9.2754]
+                        AtomExpr CHRCONST(';') [9.2752:9.2754]
                         CallExpr x_F9 [9.2757:9.2783]
                           Args:
                             CallExpr q7W [9.2762:9.2782]
                               Args:
-                                AtomExpr "D.\53y-" [9.2766:9.2774]
-                                AtomExpr '\09' [9.2777:9.2781]
+                                AtomExpr STRCONST("D.\53y-") [9.2766:9.2774]
+                                AtomExpr CHRCONST('\09') [9.2777:9.2781]
                     IfThenStmts:
                       IfStmt [9.2792:9.2814]
                         CallExpr u_702 [9.2795:9.2801]
                           Args:
                         IfThenStmts:
                           ExprStmt [9.2808:9.2810]
-                            AtomExpr '&' [9.2808:9.2810]
+                            AtomExpr CHRCONST('&') [9.2808:9.2810]
                         IfElseStmts:
                     IfElseStmts:
                       AssignStmt [9.2821:9.2831]
@@ -830,9 +830,9 @@ Program:
               VarDef K__ [9.2854:9.2879]
                 Inits:
                   Init 1* [9.2864:9.2868]
-                    AtomExpr "\nm" [9.2864:9.2868]
+                    AtomExpr STRCONST("\nm") [9.2864:9.2868]
                   Init 9* [9.2871:9.2879]
-                    AtomExpr 87911 [9.2875:9.2879]
+                    AtomExpr INTCONST(87911) [9.2875:9.2879]
               FunDef N_As [9.2881:9.2908]
                 Pars:
                 Stmts:
@@ -842,7 +842,7 @@ Program:
                       NameExpr B5l0E [9.2904:9.2908]
             LetStmts:
               WhileStmt [9.2913:9.2957]
-                AtomExpr '\\' [9.2919:9.2924]
+                AtomExpr CHRCONST('\\') [9.2919:9.2924]
                 WhileStmts:
                   IfStmt [9.2929:9.2953]
                     NameExpr _ [9.2932:9.2932]
@@ -862,7 +862,7 @@ Program:
               ParDef QXc_9 [10.25:10.29]
             Stmts:
               WhileStmt [10.34:10.69]
-                AtomExpr "?\56a\B7\AC" [10.40:10.52]
+                AtomExpr STRCONST("?\56a\B7\AC") [10.40:10.52]
                 WhileStmts:
                   ExprStmt [10.57:10.65]
                     CallExpr J [10.57:10.65]
@@ -884,7 +884,7 @@ Program:
                     Args:
                 IfThenStmts:
                   AssignStmt [10.122:10.135]
-                    AtomExpr 2 [10.122:10.122]
+                    AtomExpr INTCONST(2) [10.122:10.122]
                     UnExpr SUB [10.126:10.135]
                       CallExpr q03 [10.127:10.135]
                         Args:
@@ -903,11 +903,11 @@ Program:
           VarDef __dk [10.172:10.190]
             Inits:
               Init 3622* [10.183:10.190]
-                AtomExpr 8 [10.190:10.190]
+                AtomExpr INTCONST(8) [10.190:10.190]
           VarDef eh [10.192:10.205]
             Inits:
               Init 1* [10.201:10.205]
-                AtomExpr '\F8' [10.201:10.205]
+                AtomExpr CHRCONST('\F8') [10.201:10.205]
           FunDef _ [10.207:10.263]
             Pars:
               ParDef o9 [10.213:10.214]
@@ -920,12 +920,12 @@ Program:
                       Args:
                         CallExpr _r [10.235:10.253]
                           Args:
-                            AtomExpr "Tcj" [10.238:10.242]
+                            AtomExpr STRCONST("Tcj") [10.238:10.242]
                             CallExpr jT [10.245:10.252]
                               Args:
                                 NameExpr qc__ [10.248:10.251]
-                        AtomExpr '\CB' [10.256:10.260]
-                  AtomExpr 9 [10.263:10.263]
+                        AtomExpr CHRCONST('\CB') [10.256:10.260]
+                  AtomExpr INTCONST(9) [10.263:10.263]
           FunDef _ [10.265:10.281]
             Pars:
               ParDef MGk [10.271:10.273]
@@ -934,9 +934,9 @@ Program:
           VarDef n_T_8 [10.283:10.313]
             Inits:
               Init 7379* [10.295:10.306]
-                AtomExpr '\9E' [10.302:10.306]
+                AtomExpr CHRCONST('\9E') [10.302:10.306]
               Init 1* [10.309:10.313]
-                AtomExpr 95609 [10.309:10.313]
+                AtomExpr INTCONST(95609) [10.309:10.313]
           FunDef Ve [10.315:10.368]
             Pars:
               ParDef g [10.322:10.322]
@@ -952,24 +952,24 @@ Program:
                 BinExpr OR [10.350:10.368]
                   BinExpr OR [10.350:10.364]
                     NameExpr Sm5X [10.350:10.353]
-                    AtomExpr "\A2$\nK" [10.356:10.364]
+                    AtomExpr STRCONST("\A2$\nK") [10.356:10.364]
                   UnExpr SUB [10.367:10.368]
                     NameExpr B [10.368:10.368]
           VarDef e [10.370:10.376]
             Inits:
               Init 1* [0.0:0.0]
-                AtomExpr 0 [0.0:0.0]
+                AtomExpr INTCONST(0) [0.0:0.0]
           VarDef o [10.379:10.392]
             Inits:
               Init 1* [10.387:10.392]
-                AtomExpr "[\8E" [10.387:10.392]
+                AtomExpr STRCONST("[\8E") [10.387:10.392]
           FunDef mo [10.394:10.426]
             Pars:
             Stmts:
               ExprStmt [10.405:10.426]
                 CallExpr v [10.405:10.426]
                   Args:
-                    AtomExpr "\n.\5B" [10.407:10.414]
+                    AtomExpr STRCONST("\n.\5B") [10.407:10.414]
                     CallExpr _f [10.417:10.425]
                       Args:
                         CallExpr Th_ [10.420:10.424]
@@ -988,11 +988,11 @@ Program:
                       NameExpr _e8_o [10.467:10.471]
                     WhileStmts:
                       ExprStmt [10.476:10.481]
-                        AtomExpr "J\DE" [10.476:10.481]
+                        AtomExpr STRCONST("J\DE") [10.476:10.481]
           VarDef __r_ [10.491:10.511]
             Inits:
               Init 1* [10.502:10.511]
-                AtomExpr "3\9E*\52" [10.502:10.511]
+                AtomExpr STRCONST("3\9E*\52") [10.502:10.511]
           FunDef _u4 [10.513:10.3714]
             Pars:
               ParDef _G6qs [10.521:10.525]
@@ -1005,17 +1005,17 @@ Program:
                   VarDef nM [10.544:10.551]
                     Inits:
                       Init 1* [0.0:0.0]
-                        AtomExpr 0 [0.0:0.0]
+                        AtomExpr INTCONST(0) [0.0:0.0]
                   VarDef Y__C [10.554:10.572]
                     Inits:
                       Init 1* [10.565:10.567]
-                        AtomExpr '3' [10.565:10.567]
+                        AtomExpr CHRCONST('3') [10.565:10.567]
                       Init 1* [10.570:10.572]
-                        AtomExpr '5' [10.570:10.572]
+                        AtomExpr CHRCONST('5') [10.570:10.572]
                   VarDef _QJ [10.574:10.588]
                     Inits:
                       Init 1* [10.584:10.588]
-                        AtomExpr '\DA' [10.584:10.588]
+                        AtomExpr CHRCONST('\DA') [10.584:10.588]
                   FunDef g_Me3 [10.590:10.917]
                     Pars:
                       ParDef B_ [10.600:10.601]
@@ -1117,7 +1117,7 @@ Program:
                   VarDef _q [10.919:10.938]
                     Inits:
                       Init 75876* [10.928:10.938]
-                        AtomExpr 'P' [10.936:10.938]
+                        AtomExpr CHRCONST('P') [10.936:10.938]
                   FunDef _E [10.940:10.956]
                     Pars:
                       ParDef O_yOY [10.947:10.951]
@@ -1127,22 +1127,22 @@ Program:
                   VarDef __B [10.958:10.972]
                     Inits:
                       Init 1* [10.968:10.972]
-                        AtomExpr 87731 [10.968:10.972]
+                        AtomExpr INTCONST(87731) [10.968:10.972]
                   FunDef _Ua_3 [10.974:10.1042]
                     Pars:
                       ParDef cc_4 [10.984:10.987]
                     Stmts:
                       IfStmt [10.992:10.1042]
-                        AtomExpr '\AC' [10.995:10.999]
+                        AtomExpr CHRCONST('\AC') [10.995:10.999]
                         IfThenStmts:
                           IfStmt [10.1006:10.1038]
-                            AtomExpr '\41' [10.1009:10.1013]
+                            AtomExpr CHRCONST('\41') [10.1009:10.1013]
                             IfThenStmts:
                               ExprStmt [10.1020:10.1022]
-                                AtomExpr "p" [10.1020:10.1022]
+                                AtomExpr STRCONST("p") [10.1020:10.1022]
                             IfElseStmts:
                               ExprStmt [10.1029:10.1034]
-                                AtomExpr "\E1S" [10.1029:10.1034]
+                                AtomExpr STRCONST("\E1S") [10.1029:10.1034]
                         IfElseStmts:
                   FunDef oGZ [10.1044:10.1080]
                     Pars:
@@ -1154,8 +1154,8 @@ Program:
                             Args:
                               NameExpr I [10.1067:10.1067]
                         BinExpr ADD [10.1072:10.1080]
-                          AtomExpr "3" [10.1072:10.1074]
-                          AtomExpr "\7B" [10.1076:10.1080]
+                          AtomExpr STRCONST("3") [10.1072:10.1074]
+                          AtomExpr STRCONST("\7B") [10.1076:10.1080]
                   FunDef e1_2_ [10.1082:10.1097]
                     Pars:
                       ParDef l5_K_ [10.1092:10.1096]
@@ -1179,7 +1179,7 @@ Program:
                         UnExpr SUB [10.1147:10.1150]
                           CallExpr h [10.1148:10.1150]
                             Args:
-                        AtomExpr 'i' [10.1154:10.1158]
+                        AtomExpr CHRCONST('i') [10.1154:10.1158]
                   FunDef _nB [10.1160:10.1930]
                     Pars:
                       ParDef vd99 [10.1168:10.1171]
@@ -1192,7 +1192,7 @@ Program:
                               ParDef oB [10.1197:10.1198]
                             Stmts:
                               IfStmt [10.1203:10.1224]
-                                AtomExpr '[' [10.1206:10.1208]
+                                AtomExpr CHRCONST('[') [10.1206:10.1208]
                                 IfThenStmts:
                                   ExprStmt [10.1215:10.1220]
                                     CallExpr _3Ra [10.1215:10.1220]
@@ -1213,9 +1213,9 @@ Program:
                           VarDef Z12 [10.1266:10.1284]
                             Inits:
                               Init 1* [10.1276:10.1280]
-                                AtomExpr 68087 [10.1276:10.1280]
+                                AtomExpr INTCONST(68087) [10.1276:10.1280]
                               Init 1* [10.1283:10.1284]
-                                AtomExpr 58 [10.1283:10.1284]
+                                AtomExpr INTCONST(58) [10.1283:10.1284]
                           FunDef TeiJ [10.1286:10.1584]
                             Pars:
                               ParDef L [10.1295:10.1295]
@@ -1309,7 +1309,7 @@ Program:
                           VarDef m_h [10.1598:10.1606]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                           FunDef e [10.1609:10.1625]
                             Pars:
                               ParDef M_ [10.1615:10.1616]
@@ -1319,17 +1319,17 @@ Program:
                           VarDef f [10.1627:10.1639]
                             Inits:
                               Init 1* [10.1635:10.1639]
-                                AtomExpr '\4B' [10.1635:10.1639]
+                                AtomExpr CHRCONST('\4B') [10.1635:10.1639]
                           VarDef iu [10.1641:10.1667]
                             Inits:
                               Init 43759* [10.1650:10.1667]
-                                AtomExpr "fa\DE\4D" [10.1658:10.1667]
+                                AtomExpr STRCONST("fa\DE\4D") [10.1658:10.1667]
                           VarDef __dh [10.1669:10.1699]
                             Inits:
                               Init 1* [10.1680:10.1684]
-                                AtomExpr '\BE' [10.1680:10.1684]
+                                AtomExpr CHRCONST('\BE') [10.1680:10.1684]
                               Init 89583* [10.1687:10.1699]
-                                AtomExpr '\91' [10.1695:10.1699]
+                                AtomExpr CHRCONST('\91') [10.1695:10.1699]
                           FunDef s1 [10.1701:10.1715]
                             Pars:
                               ParDef fMU [10.1708:10.1710]
@@ -1343,8 +1343,8 @@ Program:
                               IfStmt [10.1737:10.1793]
                                 CallExpr U8xjo [10.1740:10.1756]
                                   Args:
-                                    AtomExpr 9938 [10.1746:10.1749]
-                                    AtomExpr '\n' [10.1752:10.1755]
+                                    AtomExpr INTCONST(9938) [10.1746:10.1749]
+                                    AtomExpr CHRCONST('\n') [10.1752:10.1755]
                                 IfThenStmts:
                                   ExprStmt [10.1763:10.1779]
                                     CallExpr T_ [10.1763:10.1779]
@@ -1352,7 +1352,7 @@ Program:
                                         CallExpr _pB [10.1766:10.1778]
                                           Args:
                                             NameExpr e_d [10.1770:10.1772]
-                                            AtomExpr 253 [10.1775:10.1777]
+                                            AtomExpr INTCONST(253) [10.1775:10.1777]
                                 IfElseStmts:
                                   ExprStmt [10.1786:10.1789]
                                     NameExpr _F1S [10.1786:10.1789]
@@ -1364,32 +1364,32 @@ Program:
                           VarDef _E4 [10.1807:10.1819]
                             Inits:
                               Init 1* [10.1817:10.1819]
-                                AtomExpr 923 [10.1817:10.1819]
+                                AtomExpr INTCONST(923) [10.1817:10.1819]
                           FunDef kW_s_ [10.1821:10.1841]
                             Pars:
                             Stmts:
                               AssignStmt [10.1835:10.1841]
                                 NameExpr Q [10.1835:10.1835]
-                                AtomExpr 260 [10.1839:10.1841]
+                                AtomExpr INTCONST(260) [10.1839:10.1841]
                           FunDef _8m3 [10.1843:10.1879]
                             Pars:
                               ParDef g [10.1852:10.1852]
                             Stmts:
                               IfStmt [10.1857:10.1879]
-                                AtomExpr 049 [10.1860:10.1862]
+                                AtomExpr INTCONST(049) [10.1860:10.1862]
                                 IfThenStmts:
                                   ExprStmt [10.1869:10.1875]
-                                    AtomExpr "\72XQ" [10.1869:10.1875]
+                                    AtomExpr STRCONST("\72XQ") [10.1869:10.1875]
                                 IfElseStmts:
                           FunDef __HX7 [10.1881:10.1895]
                             Pars:
                             Stmts:
                               ExprStmt [10.1895:10.1895]
-                                AtomExpr 3 [10.1895:10.1895]
+                                AtomExpr INTCONST(3) [10.1895:10.1895]
                           VarDef _ [10.1897:10.1903]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                         LetStmts:
                           WhileStmt [10.1909:10.1926]
                             NameExpr B [10.1915:10.1915]
@@ -1609,11 +1609,11 @@ Program:
                       VarDef Iz [10.2645:10.2652]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       VarDef Q5z8 [10.2655:10.2684]
                         Inits:
                           Init 461* [10.2666:10.2684]
-                            AtomExpr "\n\91\28\06" [10.2672:10.2684]
+                            AtomExpr STRCONST("\n\91\28\06") [10.2672:10.2684]
                       FunDef _Nw [10.2686:10.2751]
                         Pars:
                           ParDef K89 [10.2694:10.2696]
@@ -1625,13 +1625,13 @@ Program:
                                 CallExpr _G [10.2712:10.2726]
                                   Args:
                                     NameExpr __HH [10.2715:10.2718]
-                                    AtomExpr 67269 [10.2721:10.2725]
+                                    AtomExpr INTCONST(67269) [10.2721:10.2725]
                             IfThenStmts:
                               ExprStmt [10.2734:10.2738]
-                                AtomExpr '\A4' [10.2734:10.2738]
+                                AtomExpr CHRCONST('\A4') [10.2734:10.2738]
                             IfElseStmts:
                               ExprStmt [10.2745:10.2747]
-                                AtomExpr 419 [10.2745:10.2747]
+                                AtomExpr INTCONST(419) [10.2745:10.2747]
                       FunDef KdlOE [10.2753:10.2764]
                         Pars:
                           ParDef G [10.2763:10.2763]
@@ -1649,8 +1649,8 @@ Program:
                                   Args:
                                     CallExpr SN [10.2808:10.2816]
                                       Args:
-                                        AtomExpr '\BE' [10.2811:10.2815]
-                                    AtomExpr "\n@\1Fz(" [10.2819:10.2828]
+                                        AtomExpr CHRCONST('\BE') [10.2811:10.2815]
+                                    AtomExpr STRCONST("\n@\1Fz(") [10.2819:10.2828]
                             IfThenStmts:
                               ExprStmt [10.2837:10.2837]
                                 NameExpr v [10.2837:10.2837]
@@ -1668,7 +1668,7 @@ Program:
                       VarDef _07F [10.2881:10.2890]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef __q_ [10.2893:10.2905]
                         Pars:
                           ParDef Xa4 [10.2902:10.2904]
@@ -1686,15 +1686,15 @@ Program:
                       VarDef R_ [10.2946:10.2964]
                         Inits:
                           Init 4074* [10.2955:10.2964]
-                            AtomExpr '8' [10.2962:10.2964]
+                            AtomExpr CHRCONST('8') [10.2962:10.2964]
                       FunDef __ [10.2966:10.2995]
                         Pars:
                           ParDef H_ [10.2973:10.2974]
                           ParDef __ [10.2977:10.2978]
                         Stmts:
                           AssignStmt [10.2983:10.2995]
-                            AtomExpr "+\71" [10.2983:10.2988]
-                            AtomExpr '\'' [10.2992:10.2995]
+                            AtomExpr STRCONST("+\71") [10.2983:10.2988]
+                            AtomExpr CHRCONST('\'') [10.2992:10.2995]
                       FunDef r1 [10.2997:10.3020]
                         Pars:
                           ParDef __L_t [10.3004:10.3008]
@@ -1709,7 +1709,7 @@ Program:
                       VarDef m11 [10.3036:10.3055]
                         Inits:
                           Init 0102* [10.3046:10.3055]
-                            AtomExpr '@' [10.3053:10.3055]
+                            AtomExpr CHRCONST('@') [10.3053:10.3055]
                       FunDef e_ [10.3057:10.3070]
                         Pars:
                           ParDef _6s [10.3064:10.3066]
@@ -1807,20 +1807,20 @@ Program:
                       VarDef v [10.3366:10.3376]
                         Inits:
                           Init 1* [10.3374:10.3376]
-                            AtomExpr 'O' [10.3374:10.3376]
+                            AtomExpr CHRCONST('O') [10.3374:10.3376]
                       FunDef ql [10.3378:10.3434]
                         Pars:
                           ParDef O__ [10.3385:10.3387]
                           ParDef _7_q [10.3390:10.3393]
                         Stmts:
                           IfStmt [10.3398:10.3434]
-                            AtomExpr "&" [10.3401:10.3403]
+                            AtomExpr STRCONST("&") [10.3401:10.3403]
                             IfThenStmts:
                               ExprStmt [10.3410:10.3414]
                                 NameExpr Yt_H4 [10.3410:10.3414]
                             IfElseStmts:
                               ExprStmt [10.3421:10.3430]
-                                AtomExpr "J0Z\70\"" [10.3421:10.3430]
+                                AtomExpr STRCONST("J0Z\70\"") [10.3421:10.3430]
                     LetStmts:
                       LetStmt [10.3439:10.3706]
                         LetDefs:
@@ -1919,36 +1919,36 @@ Program:
                             Args:
                     WhileStmts:
                       IfStmt [10.3764:10.3793]
-                        AtomExpr 03165 [10.3767:10.3771]
+                        AtomExpr INTCONST(03165) [10.3767:10.3771]
                         IfThenStmts:
                           ExprStmt [10.3778:10.3780]
-                            AtomExpr 'i' [10.3778:10.3780]
+                            AtomExpr CHRCONST('i') [10.3778:10.3780]
                         IfElseStmts:
                           ExprStmt [10.3787:10.3789]
-                            AtomExpr 099 [10.3787:10.3789]
+                            AtomExpr INTCONST(099) [10.3787:10.3789]
                 IfElseStmts:
                   AssignStmt [10.3804:10.3813]
                     BinExpr DIV [10.3804:10.3808]
                       NameExpr my [10.3804:10.3805]
                       NameExpr _H [10.3807:10.3808]
                     UnExpr NOT [10.3812:10.3813]
-                      AtomExpr 3 [10.3813:10.3813]
+                      AtomExpr INTCONST(3) [10.3813:10.3813]
           FunDef g__ [10.3819:10.3827]
             Pars:
             Stmts:
           VarDef DH_ [10.3829:10.3841]
             Inits:
               Init 1* [10.3839:10.3841]
-                AtomExpr 717 [10.3839:10.3841]
+                AtomExpr INTCONST(717) [10.3839:10.3841]
         LetStmts:
           WhileStmt [10.3846:10.4186]
-            AtomExpr "$\5F@\CC" [10.3852:10.3861]
+            AtomExpr STRCONST("$\5F@\CC") [10.3852:10.3861]
             WhileStmts:
               IfStmt [10.3866:10.4182]
                 NameExpr __Lu [10.3869:10.3872]
                 IfThenStmts:
                   ExprStmt [10.3879:10.3890]
-                    AtomExpr "]\7C\13\\*" [10.3879:10.3890]
+                    AtomExpr STRCONST("]\7C\13\\*") [10.3879:10.3890]
                 IfElseStmts:
                   LetStmt [10.3897:10.4178]
                     LetDefs:
@@ -2035,7 +2035,7 @@ Program:
                         Stmts:
                     LetStmts:
                       ExprStmt [10.4171:10.4174]
-                        AtomExpr '\'' [10.4171:10.4174]
+                        AtomExpr CHRCONST('\'') [10.4171:10.4174]
   FunDef E_H [11.1:11.785]
     Pars:
       ParDef _A [11.9:11.10]
@@ -2062,13 +2062,13 @@ Program:
                   VarDef j1 [11.79:11.86]
                     Inits:
                       Init 1* [0.0:0.0]
-                        AtomExpr 0 [0.0:0.0]
+                        AtomExpr INTCONST(0) [0.0:0.0]
                   FunDef UK_ [11.89:11.136]
                     Pars:
                       ParDef e_p [11.97:11.99]
                     Stmts:
                       IfStmt [11.104:11.136]
-                        AtomExpr "\BEh4\BA" [11.107:11.116]
+                        AtomExpr STRCONST("\BEh4\BA") [11.107:11.116]
                         IfThenStmts:
                           ExprStmt [11.123:11.132]
                             CallExpr V_g [11.123:11.132]
@@ -2085,9 +2085,9 @@ Program:
                   VarDef x_ [11.157:11.189]
                     Inits:
                       Init 1* [11.166:11.172]
-                        AtomExpr "\AE]}" [11.166:11.172]
+                        AtomExpr STRCONST("\AE]}") [11.166:11.172]
                       Init 93* [11.175:11.189]
-                        AtomExpr "Z^\A3\14" [11.180:11.189]
+                        AtomExpr STRCONST("Z^\A3\14") [11.180:11.189]
                   FunDef K_G1R [11.191:11.201]
                     Pars:
                     Stmts:
@@ -2097,15 +2097,15 @@ Program:
                       ParDef N_P [11.216:11.218]
                     Stmts:
                       IfStmt [11.223:11.243]
-                        AtomExpr 886 [11.226:11.228]
+                        AtomExpr INTCONST(886) [11.226:11.228]
                         IfThenStmts:
                           ExprStmt [11.235:11.239]
-                            AtomExpr '\37' [11.235:11.239]
+                            AtomExpr CHRCONST('\37') [11.235:11.239]
                         IfElseStmts:
                   VarDef _9 [11.245:11.258]
                     Inits:
                       Init 1* [11.254:11.258]
-                        AtomExpr 6 [11.258:11.258]
+                        AtomExpr INTCONST(6) [11.258:11.258]
                   FunDef u [11.260:11.320]
                     Pars:
                     Stmts:
@@ -2118,7 +2118,7 @@ Program:
                                 NameExpr v158p [11.287:11.291]
                         IfThenStmts:
                           ExprStmt [11.300:11.303]
-                            AtomExpr '\\' [11.300:11.303]
+                            AtomExpr CHRCONST('\\') [11.300:11.303]
                         IfElseStmts:
                           ExprStmt [11.310:11.316]
                             CallExpr oo_C5 [11.310:11.316]
@@ -2138,7 +2138,7 @@ Program:
                   VarDef _2_ [11.355:11.363]
                     Inits:
                       Init 1* [0.0:0.0]
-                        AtomExpr 0 [0.0:0.0]
+                        AtomExpr INTCONST(0) [0.0:0.0]
                   FunDef Zo_ [11.366:11.384]
                     Pars:
                       ParDef H77__ [11.374:11.378]
@@ -2232,7 +2232,7 @@ Program:
                             Stmts:
                         LetStmts:
                           ExprStmt [11.691:11.694]
-                            AtomExpr "wr" [11.691:11.694]
+                            AtomExpr STRCONST("wr") [11.691:11.694]
                   FunDef _7Fm [11.700:11.716]
                     Pars:
                     Stmts:
@@ -2248,7 +2248,7 @@ Program:
                   VarDef Y20 [11.741:11.755]
                     Inits:
                       Init 1* [11.751:11.755]
-                        AtomExpr 44096 [11.751:11.755]
+                        AtomExpr INTCONST(44096) [11.751:11.755]
                   FunDef o [11.757:11.765]
                     Pars:
                       ParDef HO [11.763:11.764]
@@ -2280,7 +2280,7 @@ Program:
       IfStmt [16.18:16.110]
         BinExpr ADD [16.21:16.32]
           UnExpr MEMADDR [16.22:16.25]
-            AtomExpr " " [16.23:16.25]
+            AtomExpr STRCONST(" ") [16.23:16.25]
           NameExpr H_F [16.27:16.31]
         IfThenStmts:
           AssignStmt [16.39:16.90]
@@ -2290,9 +2290,9 @@ Program:
                   NameExpr u_ [16.41:16.42]
                   NameExpr _x63_ [16.45:16.49]
               BinExpr DIV [16.52:16.69]
-                AtomExpr "@\EFC" [16.52:16.58]
+                AtomExpr STRCONST("@\EFC") [16.52:16.58]
                 UnExpr SUB [16.60:16.69]
-                  AtomExpr "\\i\A4O" [16.61:16.69]
+                  AtomExpr STRCONST("\\i\A4O") [16.61:16.69]
             BinExpr SUB [16.73:16.90]
               BinExpr SUB [16.73:16.88]
                 UnExpr MEMADDR [16.73:16.78]
@@ -2317,7 +2317,7 @@ Program:
           VarDef d__ [17.16:17.45]
             Inits:
               Init 8689* [17.26:17.45]
-                AtomExpr "z\D0F\7E\4F" [17.33:17.45]
+                AtomExpr STRCONST("z\D0F\7E\4F") [17.33:17.45]
           FunDef __7j [17.47:17.494]
             Pars:
               ParDef _osK_ [17.56:17.60]
@@ -2338,9 +2338,9 @@ Program:
                       VarDef _N [17.104:17.129]
                         Inits:
                           Init 0* [17.113:17.118]
-                            AtomExpr 53 [17.117:17.118]
+                            AtomExpr INTCONST(53) [17.117:17.118]
                           Init 622* [17.121:17.129]
-                            AtomExpr ':' [17.127:17.129]
+                            AtomExpr CHRCONST(':') [17.127:17.129]
                       FunDef Q5 [17.131:17.140]
                         Pars:
                           ParDef gZ [17.138:17.139]
@@ -2357,8 +2357,8 @@ Program:
                                   Args:
                                     CallExpr q [17.166:17.176]
                                       Args:
-                                        AtomExpr 24170 [17.168:17.172]
-                                        AtomExpr 1 [17.175:17.175]
+                                        AtomExpr INTCONST(24170) [17.168:17.172]
+                                        AtomExpr INTCONST(1) [17.175:17.175]
                             NameExpr _E_1w [17.182:17.186]
                       FunDef _Z [17.188:17.206]
                         Pars:
@@ -2372,20 +2372,20 @@ Program:
                       VarDef HU0q2 [17.221:17.241]
                         Inits:
                           Init 03684* [17.233:17.241]
-                            AtomExpr 3 [17.241:17.241]
+                            AtomExpr INTCONST(3) [17.241:17.241]
                       VarDef o_B [17.243:17.269]
                         Inits:
                           Init 0693* [17.253:17.264]
-                            AtomExpr 17025 [17.260:17.264]
+                            AtomExpr INTCONST(17025) [17.260:17.264]
                           Init 1* [17.267:17.269]
-                            AtomExpr "q" [17.267:17.269]
+                            AtomExpr STRCONST("q") [17.267:17.269]
                       FunDef njxpO [17.271:17.281]
                         Pars:
                         Stmts:
                       VarDef __t_ [17.283:17.292]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef _0 [17.295:17.310]
                         Pars:
                           ParDef _2 [17.302:17.303]
@@ -2394,7 +2394,7 @@ Program:
                       VarDef x6W_ [17.312:17.321]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef _G90 [17.324:17.348]
                         Pars:
                           ParDef _Oj [17.333:17.335]
@@ -2408,14 +2408,14 @@ Program:
                       VarDef O [17.360:17.384]
                         Inits:
                           Init 396* [17.368:17.375]
-                            AtomExpr 05 [17.374:17.375]
+                            AtomExpr INTCONST(05) [17.374:17.375]
                           Init 2* [17.378:17.384]
-                            AtomExpr 'u' [17.382:17.384]
+                            AtomExpr CHRCONST('u') [17.382:17.384]
                       FunDef K_z5 [17.386:17.401]
                         Pars:
                         Stmts:
                           ExprStmt [17.399:17.401]
-                            AtomExpr 'J' [17.399:17.401]
+                            AtomExpr CHRCONST('J') [17.399:17.401]
                       FunDef __ [17.403:17.411]
                         Pars:
                           ParDef _ [17.410:17.410]
@@ -2426,18 +2426,18 @@ Program:
                           ParDef _sM1 [17.426:17.429]
                         Stmts:
                           AssignStmt [17.434:17.444]
-                            AtomExpr '\'' [17.434:17.437]
-                            AtomExpr 8214 [17.441:17.444]
+                            AtomExpr CHRCONST('\'') [17.434:17.437]
+                            AtomExpr INTCONST(8214) [17.441:17.444]
                       VarDef j4_ [17.446:17.454]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef M [17.457:17.463]
                         Pars:
                         Stmts:
                     LetStmts:
                       IfStmt [17.468:17.486]
-                        AtomExpr 18 [17.471:17.472]
+                        AtomExpr INTCONST(18) [17.471:17.472]
                         IfThenStmts:
                           ExprStmt [17.479:17.482]
                             NameExpr NEk5 [17.479:17.482]
@@ -2456,7 +2456,7 @@ Program:
                         CallExpr _B [17.532:17.546]
                           Args:
                             NameExpr BL [17.536:17.537]
-                            AtomExpr 04092 [17.540:17.544]
+                            AtomExpr INTCONST(04092) [17.540:17.544]
                         IfThenStmts:
                           IfStmt [17.553:17.596]
                             NameExpr __Ku [17.556:17.559]
@@ -2464,8 +2464,8 @@ Program:
                               ExprStmt [17.566:17.582]
                                 CallExpr Lp3 [17.566:17.582]
                                   Args:
-                                    AtomExpr '\9F' [17.570:17.574]
-                                    AtomExpr '\DB' [17.577:17.581]
+                                    AtomExpr CHRCONST('\9F') [17.570:17.574]
+                                    AtomExpr CHRCONST('\DB') [17.577:17.581]
                             IfElseStmts:
                               ExprStmt [17.589:17.592]
                                 NameExpr _28L [17.589:17.592]
@@ -2476,15 +2476,15 @@ Program:
                   VarDef OX [17.610:17.628]
                     Inits:
                       Init 1* [17.619:17.628]
-                        AtomExpr "\AEB\DD9" [17.619:17.628]
+                        AtomExpr STRCONST("\AEB\DD9") [17.619:17.628]
                   VarDef _8c [17.630:17.647]
                     Inits:
                       Init 8465* [17.640:17.647]
-                        AtomExpr 2 [17.647:17.647]
+                        AtomExpr INTCONST(2) [17.647:17.647]
                   VarDef v7Y_e [17.649:17.663]
                     Inits:
                       Init 1* [17.661:17.663]
-                        AtomExpr "D" [17.661:17.663]
+                        AtomExpr STRCONST("D") [17.661:17.663]
                   FunDef _p6 [17.665:17.682]
                     Pars:
                       ParDef _8 [17.673:17.674]
@@ -2503,9 +2503,9 @@ Program:
                           VarDef _X [17.721:17.737]
                             Inits:
                               Init 1* [17.730:17.730]
-                                AtomExpr 7 [17.730:17.730]
+                                AtomExpr INTCONST(7) [17.730:17.730]
                               Init 1* [17.733:17.737]
-                                AtomExpr "\6F" [17.733:17.737]
+                                AtomExpr STRCONST("\6F") [17.733:17.737]
                           FunDef BJs [17.739:17.748]
                             Pars:
                               ParDef s [17.747:17.747]
@@ -2517,7 +2517,7 @@ Program:
                           VarDef o [17.760:17.772]
                             Inits:
                               Init 1* [17.768:17.772]
-                                AtomExpr '\3D' [17.768:17.772]
+                                AtomExpr CHRCONST('\3D') [17.768:17.772]
                           FunDef Q3h8_ [17.774:17.788]
                             Pars:
                               ParDef __W_ [17.784:17.787]
@@ -2550,7 +2550,7 @@ Program:
                                       Args:
                                         CallExpr _ [17.872:17.901]
                                           Args:
-                                            AtomExpr "dr3\E7p" [17.874:17.882]
+                                            AtomExpr STRCONST("dr3\E7p") [17.874:17.882]
                                             CallExpr _ [17.885:17.900]
                                               Args:
                                                 CallExpr _Qj [17.887:17.891]
@@ -2562,7 +2562,7 @@ Program:
                           VarDef sE9k [17.908:17.917]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                           FunDef q_3 [17.920:17.932]
                             Pars:
                               ParDef itu6 [17.928:17.931]
@@ -2572,7 +2572,7 @@ Program:
                               ParDef yY [17.942:17.943]
                             Stmts:
                               AssignStmt [17.948:17.954]
-                                AtomExpr '&' [17.948:17.950]
+                                AtomExpr CHRCONST('&') [17.948:17.950]
                                 NameExpr d [17.954:17.954]
                           FunDef _d3i_ [17.956:17.976]
                             Pars:
@@ -2585,7 +2585,7 @@ Program:
                           VarDef zMM_ [17.988:17.1011]
                             Inits:
                               Init 7394* [17.999:17.1011]
-                                AtomExpr "\65P" [17.1006:17.1011]
+                                AtomExpr STRCONST("\65P") [17.1006:17.1011]
                           FunDef Ui1J [17.1013:17.1022]
                             Pars:
                             Stmts:
@@ -2620,7 +2620,7 @@ Program:
                           VarDef oI0A [17.1111:17.1130]
                             Inits:
                               Init 8* [17.1122:17.1130]
-                                AtomExpr 83302 [17.1126:17.1130]
+                                AtomExpr INTCONST(83302) [17.1126:17.1130]
                         LetStmts:
                           IfStmt [17.1135:17.1153]
                             NameExpr U [17.1138:17.1138]
@@ -2643,7 +2643,7 @@ Program:
                               Args:
                             WhileStmts:
                               ExprStmt [17.1202:17.1205]
-                                AtomExpr 1481 [17.1202:17.1205]
+                                AtomExpr INTCONST(1481) [17.1202:17.1205]
                   FunDef F [17.1215:17.1235]
                     Pars:
                       ParDef s [17.1221:17.1221]
@@ -2652,7 +2652,7 @@ Program:
                         BinExpr ADD [17.1226:17.1235]
                           CallExpr ___t [17.1226:17.1231]
                             Args:
-                          AtomExpr 445 [17.1233:17.1235]
+                          AtomExpr INTCONST(445) [17.1233:17.1235]
                   FunDef __52u [17.1237:17.1331]
                     Pars:
                       ParDef D_ [17.1247:17.1248]
@@ -2667,7 +2667,7 @@ Program:
                                     CallExpr h3l4 [17.1268:17.1273]
                                       Args:
                                     NameExpr _ [17.1276:17.1276]
-                                AtomExpr '\\' [17.1280:17.1283]
+                                AtomExpr CHRCONST('\\') [17.1280:17.1283]
                         WhileStmts:
                           IfStmt [17.1290:17.1327]
                             NameExpr __ [17.1293:17.1294]
@@ -2695,7 +2695,7 @@ Program:
                           CallExpr Gg [17.1365:17.1368]
                             Args:
                         UnExpr MEMADDR [17.1372:17.1377]
-                          AtomExpr 26642 [17.1373:17.1377]
+                          AtomExpr INTCONST(26642) [17.1373:17.1377]
                   FunDef _SR [17.1379:17.1395]
                     Pars:
                       ParDef kvn [17.1387:17.1389]
@@ -2704,9 +2704,9 @@ Program:
                   VarDef l [17.1397:17.1410]
                     Inits:
                       Init 1* [17.1405:17.1407]
-                        AtomExpr 'm' [17.1405:17.1407]
+                        AtomExpr CHRCONST('m') [17.1405:17.1407]
                       Init 1* [17.1410:17.1410]
-                        AtomExpr 2 [17.1410:17.1410]
+                        AtomExpr INTCONST(2) [17.1410:17.1410]
                   FunDef T [17.1412:17.1505]
                     Pars:
                     Stmts:
@@ -2733,7 +2733,7 @@ Program:
                                     CallExpr N [17.1483:17.1492]
                                       Args:
                                         NameExpr Q_ [17.1485:17.1486]
-                                        AtomExpr 386 [17.1489:17.1491]
+                                        AtomExpr INTCONST(386) [17.1489:17.1491]
                                     NameExpr _OBxK [17.1495:17.1499]
                   FunDef _Wx [17.1507:17.1517]
                     Pars:
@@ -2750,7 +2750,7 @@ Program:
                           AssignStmt [17.1561:17.1574]
                             CallExpr L3f [17.1561:17.1567]
                               Args:
-                                AtomExpr 61 [17.1565:17.1566]
+                                AtomExpr INTCONST(61) [17.1565:17.1566]
                             NameExpr _6bb [17.1571:17.1574]
                   FunDef v491 [17.1580:17.1594]
                     Pars:
@@ -2762,14 +2762,14 @@ Program:
                       NameExpr _l_ [17.1603:17.1605]
                     IfThenStmts:
                       WhileStmt [17.1612:17.1644]
-                        AtomExpr 'x' [17.1618:17.1620]
+                        AtomExpr CHRCONST('x') [17.1618:17.1620]
                         WhileStmts:
                           ExprStmt [17.1625:17.1640]
                             CallExpr To_O [17.1625:17.1640]
                               Args:
                                 CallExpr O [17.1630:17.1639]
                                   Args:
-                                    AtomExpr 1 [17.1632:17.1632]
+                                    AtomExpr INTCONST(1) [17.1632:17.1632]
                                     NameExpr h___ [17.1635:17.1638]
                     IfElseStmts:
           FunDef nyvJ [17.1654:17.2594]
@@ -2777,14 +2777,14 @@ Program:
               ParDef K_ [17.1663:17.1664]
             Stmts:
               WhileStmt [17.1669:17.2594]
-                AtomExpr "A" [17.1675:17.1677]
+                AtomExpr STRCONST("A") [17.1675:17.1677]
                 WhileStmts:
                   LetStmt [17.1682:17.2590]
                     LetDefs:
                       VarDef Zq [17.1686:17.1693]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef c__6u [17.1696:17.1706]
                         Pars:
                         Stmts:
@@ -2794,10 +2794,10 @@ Program:
                           ParDef J [17.1720:17.1720]
                         Stmts:
                           IfStmt [17.1725:17.1747]
-                            AtomExpr "\ACZ" [17.1728:17.1733]
+                            AtomExpr STRCONST("\ACZ") [17.1728:17.1733]
                             IfThenStmts:
                               ExprStmt [17.1740:17.1743]
-                                AtomExpr "\n" [17.1740:17.1743]
+                                AtomExpr STRCONST("\n") [17.1740:17.1743]
                             IfElseStmts:
                       FunDef k_E5 [17.1749:17.1797]
                         Pars:
@@ -2808,12 +2808,12 @@ Program:
                             NameExpr _R_Z [17.1775:17.1778]
                             IfThenStmts:
                               ExprStmt [17.1785:17.1793]
-                                AtomExpr "4\28[)%" [17.1785:17.1793]
+                                AtomExpr STRCONST("4\28[)%") [17.1785:17.1793]
                             IfElseStmts:
                       VarDef H9 [17.1799:17.1806]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef o_ [17.1809:17.1841]
                         Pars:
                           ParDef S_ [17.1816:17.1817]
@@ -2833,21 +2833,21 @@ Program:
                         Pars:
                         Stmts:
                           ExprStmt [17.1872:17.1872]
-                            AtomExpr 0 [17.1872:17.1872]
+                            AtomExpr INTCONST(0) [17.1872:17.1872]
                       VarDef gjf [17.1874:17.1882]
                         Inits:
                           Init 1* [0.0:0.0]
-                            AtomExpr 0 [0.0:0.0]
+                            AtomExpr INTCONST(0) [0.0:0.0]
                       FunDef S_W [17.1885:17.1935]
                         Pars:
                           ParDef _j_6 [17.1893:17.1896]
                           ParDef h_ [17.1899:17.1900]
                         Stmts:
                           IfStmt [17.1905:17.1935]
-                            AtomExpr "\5AE(\\" [17.1908:17.1916]
+                            AtomExpr STRCONST("\5AE(\\") [17.1908:17.1916]
                             IfThenStmts:
                               ExprStmt [17.1923:17.1931]
-                                AtomExpr "O]s\"\n" [17.1923:17.1931]
+                                AtomExpr STRCONST("O]s\"\n") [17.1923:17.1931]
                             IfElseStmts:
                       FunDef i [17.1937:17.2000]
                         Pars:
@@ -2866,13 +2866,13 @@ Program:
                                             NameExpr B4_I [17.1971:17.1974]
                                             CallExpr T7_sU [17.1977:17.1983]
                                               Args:
-                                    AtomExpr "\AA\E0\EA" [17.1988:17.1998]
+                                    AtomExpr STRCONST("\AA\E0\EA") [17.1988:17.1998]
                       VarDef B05 [17.2002:17.2034]
                         Inits:
                           Init 1* [17.2012:17.2023]
-                            AtomExpr "S\C4\6F\\5" [17.2012:17.2023]
+                            AtomExpr STRCONST("S\C4\6F\\5") [17.2012:17.2023]
                           Init 550* [17.2026:17.2034]
-                            AtomExpr 845 [17.2032:17.2034]
+                            AtomExpr INTCONST(845) [17.2032:17.2034]
                       FunDef U_X_ [17.2036:17.2080]
                         Pars:
                         Stmts:
@@ -2890,11 +2890,11 @@ Program:
                       VarDef N19 [17.2082:17.2104]
                         Inits:
                           Init 67817* [17.2092:17.2104]
-                            AtomExpr 79833 [17.2100:17.2104]
+                            AtomExpr INTCONST(79833) [17.2100:17.2104]
                       VarDef bP [17.2106:17.2125]
                         Inits:
                           Init 1* [17.2115:17.2125]
-                            AtomExpr "\2C=BP\8F" [17.2115:17.2125]
+                            AtomExpr STRCONST("\2C=BP\8F") [17.2115:17.2125]
                       FunDef xm [17.2127:17.2136]
                         Pars:
                           ParDef cl [17.2134:17.2135]
@@ -2913,7 +2913,7 @@ Program:
                       VarDef _8 [17.2177:17.2186]
                         Inits:
                           Init 1* [17.2186:17.2186]
-                            AtomExpr 5 [17.2186:17.2186]
+                            AtomExpr INTCONST(5) [17.2186:17.2186]
                       FunDef r95g [17.2188:17.2276]
                         Pars:
                           ParDef Iv8 [17.2197:17.2199]
@@ -2922,7 +2922,7 @@ Program:
                           IfStmt [17.2209:17.2276]
                             CallExpr _7H [17.2212:17.2221]
                               Args:
-                                AtomExpr 4 [17.2216:17.2216]
+                                AtomExpr INTCONST(4) [17.2216:17.2216]
                                 NameExpr r9 [17.2219:17.2220]
                             IfThenStmts:
                               ExprStmt [17.2228:17.2272]
@@ -2932,10 +2932,10 @@ Program:
                                       Args:
                                     CallExpr TOO_4 [17.2238:17.2271]
                                       Args:
-                                        AtomExpr "\73\68\DC" [17.2244:17.2254]
+                                        AtomExpr STRCONST("\73\68\DC") [17.2244:17.2254]
                                         CallExpr ye [17.2257:17.2270]
                                           Args:
-                                            AtomExpr "U\AB\21L" [17.2260:17.2269]
+                                            AtomExpr STRCONST("U\AB\21L") [17.2260:17.2269]
                             IfElseStmts:
                     LetStmts:
                       LetStmt [17.2281:17.2586]
@@ -3026,17 +3026,17 @@ Program:
                           ExprStmt [17.2575:17.2582]
                             CallExpr _Z2 [17.2575:17.2582]
                               Args:
-                                AtomExpr 'b' [17.2579:17.2581]
+                                AtomExpr CHRCONST('b') [17.2579:17.2581]
           VarDef __ [17.2596:17.2603]
             Inits:
               Init 1* [0.0:0.0]
-                AtomExpr 0 [0.0:0.0]
+                AtomExpr INTCONST(0) [0.0:0.0]
           FunDef __ [17.2606:17.2644]
             Pars:
             Stmts:
               WhileStmt [17.2617:17.2644]
                 UnExpr MEMADDR [17.2623:17.2630]
-                  AtomExpr '\5F' [17.2624:17.2630]
+                  AtomExpr CHRCONST('\5F') [17.2624:17.2630]
                 WhileStmts:
                   ExprStmt [17.2635:17.2640]
                     NameExpr Z_7_ [17.2635:17.2640]
@@ -3069,8 +3069,8 @@ Program:
                       ParDef dm [17.2737:17.2738]
                     Stmts:
                       AssignStmt [17.2743:17.2755]
-                        AtomExpr "qS{" [17.2743:17.2747]
-                        AtomExpr '\CC' [17.2751:17.2755]
+                        AtomExpr STRCONST("qS{") [17.2743:17.2747]
+                        AtomExpr CHRCONST('\CC') [17.2751:17.2755]
                   FunDef sj9 [17.2757:17.2768]
                     Pars:
                       ParDef y_5 [17.2765:17.2767]
@@ -3078,7 +3078,7 @@ Program:
                   VarDef J_ [17.2770:17.2784]
                     Inits:
                       Init 1* [17.2779:17.2784]
-                        AtomExpr 89 [17.2783:17.2784]
+                        AtomExpr INTCONST(89) [17.2783:17.2784]
                   FunDef a4c [17.2786:17.2796]
                     Pars:
                       ParDef _h [17.2794:17.2795]
@@ -3092,10 +3092,10 @@ Program:
                           NameExpr _1__ [17.2821:17.2824]
                         WhileStmts:
                           WhileStmt [17.2829:17.2852]
-                            AtomExpr 8484 [17.2835:17.2838]
+                            AtomExpr INTCONST(8484) [17.2835:17.2838]
                             WhileStmts:
                               ExprStmt [17.2843:17.2848]
-                                AtomExpr "4qz`" [17.2843:17.2848]
+                                AtomExpr STRCONST("4qz`") [17.2843:17.2848]
                   FunDef Wgl7W [17.2858:17.3553]
                     Pars:
                     Stmts:
@@ -3104,41 +3104,41 @@ Program:
                           VarDef u [17.2876:17.2896]
                             Inits:
                               Init 1* [17.2884:17.2889]
-                                AtomExpr "\CE}" [17.2884:17.2889]
+                                AtomExpr STRCONST("\CE}") [17.2884:17.2889]
                               Init 1* [17.2892:17.2896]
-                                AtomExpr '\D0' [17.2892:17.2896]
+                                AtomExpr CHRCONST('\D0') [17.2892:17.2896]
                           VarDef H_ [17.2898:17.2926]
                             Inits:
                               Init 1* [17.2907:17.2912]
-                                AtomExpr "(\72" [17.2907:17.2912]
+                                AtomExpr STRCONST("(\72") [17.2907:17.2912]
                               Init 1* [17.2915:17.2926]
-                                AtomExpr "b\B52C" [17.2919:17.2926]
+                                AtomExpr STRCONST("b\B52C") [17.2919:17.2926]
                           VarDef G1W0 [17.2928:17.2937]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                           VarDef n [17.2940:17.2960]
                             Inits:
                               Init 10009* [17.2948:17.2960]
-                                AtomExpr '\7E' [17.2956:17.2960]
+                                AtomExpr CHRCONST('\7E') [17.2956:17.2960]
                           VarDef _VI_ [17.2962:17.2971]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                           FunDef a1_ [17.2974:17.3019]
                             Pars:
                               ParDef _Kv [17.2982:17.2984]
                               ParDef mQmm [17.2987:17.2990]
                             Stmts:
                               WhileStmt [17.2995:17.3019]
-                                AtomExpr 04379 [17.3001:17.3005]
+                                AtomExpr INTCONST(04379) [17.3001:17.3005]
                                 WhileStmts:
                                   ExprStmt [17.3010:17.3015]
-                                    AtomExpr "\F8&" [17.3010:17.3015]
+                                    AtomExpr STRCONST("\F8&") [17.3010:17.3015]
                           VarDef __ [17.3021:17.3033]
                             Inits:
                               Init 1* [17.3030:17.3033]
-                                AtomExpr '\'' [17.3030:17.3033]
+                                AtomExpr CHRCONST('\'') [17.3030:17.3033]
                           FunDef _Y35_ [17.3035:17.3045]
                             Pars:
                             Stmts:
@@ -3149,21 +3149,21 @@ Program:
                           VarDef _bWW [17.3062:17.3071]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                           VarDef _R0_l [17.3074:17.3084]
                             Inits:
                               Init 1* [0.0:0.0]
-                                AtomExpr 0 [0.0:0.0]
+                                AtomExpr INTCONST(0) [0.0:0.0]
                           VarDef V_v [17.3087:17.3103]
                             Inits:
                               Init 1* [17.3097:17.3103]
-                                AtomExpr "\n\\:" [17.3097:17.3103]
+                                AtomExpr STRCONST("\n\\:") [17.3097:17.3103]
                           VarDef C5_ix [17.3105:17.3133]
                             Inits:
                               Init 07423* [17.3117:17.3128]
-                                AtomExpr '\n' [17.3125:17.3128]
+                                AtomExpr CHRCONST('\n') [17.3125:17.3128]
                               Init 1* [17.3131:17.3133]
-                                AtomExpr '@' [17.3131:17.3133]
+                                AtomExpr CHRCONST('@') [17.3131:17.3133]
                           FunDef JchN [17.3135:17.3178]
                             Pars:
                               ParDef r [17.3144:17.3144]
@@ -3303,7 +3303,7 @@ Program:
                             Args:
                         WhileStmts:
                           ExprStmt [17.3591:17.3593]
-                            AtomExpr 'w' [17.3591:17.3593]
+                            AtomExpr CHRCONST('w') [17.3591:17.3593]
                   FunDef rZ [17.3599:17.3607]
                     Pars:
                       ParDef U [17.3606:17.3606]
@@ -3315,20 +3315,20 @@ Program:
                   VarDef cx_6 [17.3626:17.3641]
                     Inits:
                       Init 1* [17.3637:17.3641]
-                        AtomExpr 23263 [17.3637:17.3641]
+                        AtomExpr INTCONST(23263) [17.3637:17.3641]
                   VarDef vQ [17.3643:17.3666]
                     Inits:
                       Init 5054* [17.3652:17.3661]
-                        AtomExpr 217 [17.3659:17.3661]
+                        AtomExpr INTCONST(217) [17.3659:17.3661]
                       Init 1* [17.3664:17.3666]
-                        AtomExpr 438 [17.3664:17.3666]
+                        AtomExpr INTCONST(438) [17.3664:17.3666]
                   FunDef JVi [17.3668:17.3717]
                     Pars:
                       ParDef _ [17.3676:17.3676]
                       ParDef _ [17.3679:17.3679]
                     Stmts:
                       IfStmt [17.3684:17.3717]
-                        AtomExpr 93 [17.3687:17.3690]
+                        AtomExpr INTCONST(93) [17.3687:17.3690]
                         IfThenStmts:
                           ExprStmt [17.3697:17.3704]
                             CallExpr __9q [17.3697:17.3704]
@@ -3342,7 +3342,7 @@ Program:
                       ParDef _L___ [17.3729:17.3733]
                     Stmts:
                       WhileStmt [17.3738:17.3779]
-                        AtomExpr "\F5u@" [17.3744:17.3752]
+                        AtomExpr STRCONST("\F5u@") [17.3744:17.3752]
                         WhileStmts:
                           IfStmt [17.3757:17.3775]
                             NameExpr hq_ [17.3760:17.3762]
@@ -3363,7 +3363,7 @@ Program:
                           NameExpr i7kU [17.3815:17.3818]
                         IfThenStmts:
                           WhileStmt [17.3825:17.3850]
-                            AtomExpr "\nf\55=X" [17.3831:17.3840]
+                            AtomExpr STRCONST("\nf\55=X") [17.3831:17.3840]
                             WhileStmts:
                               ExprStmt [17.3845:17.3846]
                                 NameExpr Xm [17.3845:17.3846]
@@ -3379,7 +3379,7 @@ Program:
                     Stmts:
                       ExprStmt [17.3896:17.3907]
                         UnExpr MEMADDR [17.3896:17.3907]
-                          AtomExpr "E\\6\"\A2" [17.3897:17.3907]
+                          AtomExpr STRCONST("E\\6\"\A2") [17.3897:17.3907]
                   FunDef _K7RZ [17.3909:17.3939]
                     Pars:
                       ParDef gUM4_ [17.3919:17.3923]
@@ -3398,7 +3398,7 @@ Program:
           VarDef ONqm [17.3963:17.3972]
             Inits:
               Init 1* [0.0:0.0]
-                AtomExpr 0 [0.0:0.0]
+                AtomExpr INTCONST(0) [0.0:0.0]
           FunDef p [17.3975:17.3990]
             Pars:
               ParDef veN_ [17.3981:17.3984]
@@ -3412,9 +3412,9 @@ Program:
           VarDef RsI [17.4009:17.4032]
             Inits:
               Init 1* [17.4019:17.4023]
-                AtomExpr '\3F' [17.4019:17.4023]
+                AtomExpr CHRCONST('\3F') [17.4019:17.4023]
               Init 304* [17.4026:17.4032]
-                AtomExpr 5 [17.4032:17.4032]
+                AtomExpr INTCONST(5) [17.4032:17.4032]
           FunDef S [17.4034:17.4042]
             Pars:
               ParDef q_ [17.4040:17.4041]
@@ -3453,7 +3453,7 @@ Program:
                   UnExpr MEMADDR [17.4155:17.4158]
                     CallExpr U [17.4156:17.4158]
                       Args:
-                  AtomExpr "!\FB*L" [17.4160:17.4167]
+                  AtomExpr STRCONST("!\FB*L") [17.4160:17.4167]
           FunDef G [17.4169:17.4179]
             Pars:
               ParDef d_n_ [17.4175:17.4178]
@@ -3466,11 +3466,11 @@ Program:
           VarDef W [17.4202:17.4208]
             Inits:
               Init 1* [0.0:0.0]
-                AtomExpr 0 [0.0:0.0]
+                AtomExpr INTCONST(0) [0.0:0.0]
           VarDef Y [17.4211:17.4217]
             Inits:
               Init 1* [0.0:0.0]
-                AtomExpr 0 [0.0:0.0]
+                AtomExpr INTCONST(0) [0.0:0.0]
         LetStmts:
           ExprStmt [17.4223:17.4281]
             CallExpr p [17.4223:17.4281]
@@ -3485,10 +3485,10 @@ Program:
                           Args:
                             CallExpr QK__r [17.4247:17.4277]
                               Args:
-                                AtomExpr "(z" [17.4253:17.4256]
+                                AtomExpr STRCONST("(z") [17.4253:17.4256]
                                 CallExpr FC_9_ [17.4259:17.4276]
                                   Args:
-                                    AtomExpr 09559 [17.4265:17.4269]
+                                    AtomExpr INTCONST(09559) [17.4265:17.4269]
                                     CallExpr _ [17.4272:17.4275]
                                       Args:
                                         NameExpr M [17.4274:17.4274]
@@ -3505,19 +3505,19 @@ Program:
               BinExpr DIV [18.33:18.46]
                 CallExpr Q___ [18.33:18.43]
                   Args:
-                    AtomExpr 88002 [18.38:18.42]
-                AtomExpr 33 [18.45:18.46]
+                    AtomExpr INTCONST(88002) [18.38:18.42]
+                AtomExpr INTCONST(33) [18.45:18.46]
               BinExpr MUL [18.48:18.52]
                 NameExpr _ [18.48:18.48]
                 NameExpr ncU [18.50:18.52]
             IfThenStmts:
               WhileStmt [18.59:18.111]
-                AtomExpr 'G' [18.65:18.67]
+                AtomExpr CHRCONST('G') [18.65:18.67]
                 WhileStmts:
                   IfStmt [18.72:18.107]
                     CallExpr y_ [18.75:18.82]
                       Args:
-                        AtomExpr '\n' [18.78:18.81]
+                        AtomExpr CHRCONST('\n') [18.78:18.81]
                     IfThenStmts:
                       ExprStmt [18.89:18.93]
                         NameExpr _ubl5 [18.89:18.93]
@@ -3529,11 +3529,11 @@ Program:
   VarDef mJ [19.1:19.27]
     Inits:
       Init 4* [19.10:19.27]
-        AtomExpr "6\A3\A5\EC\\" [19.14:19.27]
+        AtomExpr STRCONST("6\A3\A5\EC\\") [19.14:19.27]
   VarDef HO [20.1:20.19]
     Inits:
       Init 6* [20.10:20.19]
-        AtomExpr "})\n" [20.14:20.19]
+        AtomExpr STRCONST("})\n") [20.14:20.19]
   FunDef _7 [21.1:21.13]
     Pars:
       ParDef s_1Pl [21.8:21.12]
@@ -3546,11 +3546,11 @@ Program:
           UnExpr MEMADDR [22.19:22.22]
             NameExpr zgg [22.20:22.22]
           UnExpr SUB [22.24:22.34]
-            AtomExpr "\39\94Xs" [22.25:22.34]
+            AtomExpr STRCONST("\39\94Xs") [22.25:22.34]
         IfThenStmts:
           IfStmt [22.42:22.157]
             UnExpr MEMADDR [22.45:22.51]
-              AtomExpr 1675 [22.46:22.51]
+              AtomExpr INTCONST(1675) [22.46:22.51]
             IfThenStmts:
               IfStmt [22.58:22.98]
                 UnExpr NOT [22.61:22.68]
@@ -3566,12 +3566,12 @@ Program:
             IfElseStmts:
               WhileStmt [22.105:22.153]
                 UnExpr MEMADDR [22.111:22.123]
-                  AtomExpr "\D7\F82w\\" [22.112:22.123]
+                  AtomExpr STRCONST("\D7\F82w\\") [22.112:22.123]
                 WhileStmts:
                   WhileStmt [22.128:22.149]
-                    AtomExpr '\4F' [22.134:22.138]
+                    AtomExpr CHRCONST('\4F') [22.134:22.138]
                     WhileStmts:
                       ExprStmt [22.143:22.145]
-                        AtomExpr "E" [22.143:22.145]
+                        AtomExpr STRCONST("E") [22.143:22.145]
         IfElseStmts:
 :-) Done.

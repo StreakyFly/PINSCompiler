@@ -45,9 +45,11 @@ function run_test {
     # run java project in ../out catch error too
     java -p ../out/production/pins24 -m pins24/pins24.phase.$1 $2 > /tmp/test_output.pins24 2>&1
 
-    # Strip ANSI codes from the test output - WARNING, this could cause incorrect TEST FAILED messages! if ANSI codes are included in test.pins24 strings
-    sed 's/\x1b\[1m//g; s/\x1b\[0m//g' /tmp/test_output.pins24 > /tmp/stripped_test_output.pins24
-    
+    # Strip ANSI codes from the test output - WARNING, this could cause incorrect TEST FAILED messages if ANSI codes are included in test.pins24 strings
+    # sed 's/\x1b\[1m//g; s/\x1b\[0m//g' /tmp/test_output.pins24 > /tmp/stripped_test_output.pins24
+    # sed 's/\x1b\[1m//g; s/\x1b\[0m//g; s/\x1b\[31m//g; s/\x1b\[30m//g' /tmp/test_output.pins24 > /tmp/stripped_test_output.pins24   
+    sed 's/\x1b\[[0-9;]*m//g' /tmp/test_output.pins24 > /tmp/stripped_test_output.pins24
+
     diff -q /tmp/stripped_test_output.pins24 $3 > /dev/null
 
     # check if the test passed
@@ -112,6 +114,11 @@ if [ -d "$2" ]; then
     echo_color "yellow" "Running tests for $2..."
     for file in "$2"/*; do
         if [ -f "$file" ]; then
+            # check if the file has a .pins24 extension
+            if ! has_extension "$file"; then
+                continue
+            fi
+
             # check if the file is an output file
             if is_output_file "$file"; then
                 continue

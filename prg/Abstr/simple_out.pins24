@@ -3,7 +3,7 @@ Program:
   VarDef n [1.1:1.7]
     Inits:
       Init 1* [1.7:1.7]
-        AtomExpr 0 [1.7:1.7]
+        AtomExpr INTCONST(0) [1.7:1.7]
   FunDef inc [2.1:2.14]
     Pars:
       ParDef m [2.9:2.9]
@@ -11,5 +11,5 @@ Program:
       ExprStmt [2.12:2.14]
         BinExpr ADD [2.12:2.14]
           NameExpr m [2.12:2.12]
-          AtomExpr 1 [2.14:2.14]
+          AtomExpr INTCONST(1) [2.14:2.14]
 :-) Done.
