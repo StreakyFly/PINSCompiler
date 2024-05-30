@@ -69,7 +69,7 @@ function run_test {
 
 function is_output_file {
     # check if file has _out.pins24 extension
-    if [[ $1 == *_out.pins24 ]]; then
+    if [[ $1 == *_out.pins24 || $1 == *.out ]]; then
         return 0
     else
         return 1
@@ -78,7 +78,7 @@ function is_output_file {
 
 function has_extension {
     # check if file has .pins24 extension
-    if [[ $1 == *.pins24 ]]; then
+    if [[ $1 == *.pins24 || $1 == *.out ]]; then
         return 0
     else
         return 1
@@ -126,14 +126,23 @@ if [ -d "$2" ]; then
 
             # check if the output file exists
             output_file="${file%.*}_out.pins24"
-            if [ ! -f "$output_file" ]; then
-                echo_color "red" "Error: $output_file not found."
-                exit 1
+            output_file2="${file%.*}.out"
+            if [[ -f "$output_file" || -f "$output_file2" ]]; then
+                if [ -f "$output_file" ]; then
+                    echo "Output file found: $output_file"
+                    # run the test
+                    run_test "$1" "$file" "$output_file"
+                elif [ -f "$output_file2" ]; then
+                    echo "Output file found: $output_file2"
+                    # run the test
+                    run_test "$1" "$file" "$output_file2"
+                else
+                    echo "Error: Neither $output_file nor $output_file2 found."
+                    exit 1
+                fi
+            else
+                echo "The file '$file' does not match the criteria."
             fi
-
-
-            # run the test
-            run_test "$1" "$file" "$output_file"
         fi
     done
 elif [ -f "$2" ]; then # check if the path is a file
