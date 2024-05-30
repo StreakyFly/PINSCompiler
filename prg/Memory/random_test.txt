@@ -1,0 +1,58 @@
+# can var and fun have the same name? I don't think so...?
+#var x = 1
+fun x(n) = 1
+
+fun main() =
+	let
+		var n = 0
+		var s = "ABC\00"
+		fun inc(m) = m+1
+	in
+	    let
+	        var a = 0
+	        fun sub(m, n) = m-1
+	    in
+	        a = 1
+	    end,
+
+		n = "CDE\00",
+		inc(n+3)
+	end
+
+
+# strings must end with \00, for example var string = "this is a string\00"
+# var s = "55555\00" is written in memory like L55555 => '5', '5', '5', '5', '5', 0
+# var c = '5' is written in memory like 53
+# var i = 5 is written in memory like 5
+
+# vse zunanje funkcije imajo depth=1, če je funkcija v drugi funkciji (v let), potem ima depth=2, oziroma več, če je globje nested
+# variables/parameters/... imajo isto globino kot funkcija v kateri so
+# zunanji variabli, ki niso v funkcijah nimajo depth-a (absoluten dostop - za to se rabi labela, ne depth)
+# var s = 0 (labela je s)
+
+# labele so unikatne, tudi če so v različnih funkcijah
+# f1 --------- f1
+#    g --------- f1.g
+# f2 --------- f2
+#    g --------- f2.g
+
+
+
+
+#fun main() = inc(5)
+
+#fun inc(n) =
+#    let
+#        var m = 0
+#    in
+#        m = n,
+#        m + 1
+#    end
+
+fun f(a, b) =
+    let
+        var x = 7
+        var arr = 1000 * "test"
+    in
+        31 * x
+    end

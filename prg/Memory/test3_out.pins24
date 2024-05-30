@@ -1,0 +1,48 @@
+This is PINS'24 compiler (memory):
+Program:
+  FunDef main [1.1:1.19] depth=1 parsSize=4 varsSize=8
+    Pars:
+    Stmts:
+      ExprStmt [1.14:1.19]
+        CallExpr inc [1.14:1.19] def@[3.1:9.7]
+          Args:
+            AtomExpr INTCONST(5) [1.18:1.18]
+  FunDef inc [3.1:9.7] depth=1 parsSize=8 varsSize=12
+    Pars:
+      ParDef n [3.9:3.9] offset=4 size=4 depth=1
+    Stmts:
+      LetStmt [4.5:9.7]
+        LetDefs:
+          VarDef m [5.9:5.17] offset=-12 size=4 depth=1 inits=0
+            Inits:
+              Init 1* [5.17:5.17]
+                AtomExpr INTCONST(0) [5.17:5.17]
+        LetStmts:
+          AssignStmt [7.9:7.13]
+            NameExpr m [7.9:7.9] def@[5.9:5.17] lval
+            NameExpr n [7.13:7.13] def@[3.9:3.9] lval
+          ExprStmt [8.9:8.13]
+            BinExpr ADD [8.9:8.13]
+              NameExpr m [8.9:8.9] def@[5.9:5.17] lval
+              AtomExpr INTCONST(1) [8.13:8.13]
+  FunDef f [11.1:17.7] depth=1 parsSize=12 varsSize=4012
+    Pars:
+      ParDef a [11.7:11.7] offset=4 size=4 depth=1
+      ParDef b [11.10:11.10] offset=8 size=4 depth=1
+    Stmts:
+      LetStmt [12.5:17.7]
+        LetDefs:
+          VarDef x [13.9:13.17] offset=-12 size=4 depth=1 inits=7
+            Inits:
+              Init 1* [13.17:13.17]
+                AtomExpr INTCONST(7) [13.17:13.17]
+          VarDef arr [14.9:14.27] offset=-4012 size=4000 depth=1 inits=17,17,17,17,17,17,17,17,17,17...
+            Inits:
+              Init 1000* [14.19:14.27]
+                AtomExpr INTCONST(17) [14.26:14.27]
+        LetStmts:
+          ExprStmt [16.9:16.14]
+            BinExpr MUL [16.9:16.14]
+              AtomExpr INTCONST(31) [16.9:16.10]
+              NameExpr x [16.14:16.14] def@[13.9:13.17] lval
+:-) Done.

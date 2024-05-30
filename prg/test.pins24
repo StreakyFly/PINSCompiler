@@ -1,18 +1,9 @@
-fun epic(p1, p2, p3, p4) =
-    let var beans = 7 * "beans" in beans = 5 * "beans",
-        let var x = 0 in x = 1,
-           let var y = 0 in y = 1,
-               let var z = 0 in z = 1,
-                   let
-                       var w = 1
-                       fun cool(p1, p2) = x * 3
-                   in
-                       if 1 == 2 then
-                           cool(1, 2)
-                       end
-                   end
-               end
-           end
-        end
+fun main()=inc(5)
+
+fun inc(n)=
+    let
+        var m=0
+    in
+        m=n,
+        m+1
     end
-, 1

@@ -1,0 +1,122 @@
+This is PINS'24 compiler (memory):
+Program:
+  FunDef epic [1.1:28.3] depth=1 parsSize=20 varsSize=148
+    Pars:
+      ParDef p1 [1.10:1.11] offset=4 size=4 depth=1
+      ParDef p2 [1.14:1.15] offset=8 size=4 depth=1
+      ParDef p3 [1.18:1.19] offset=12 size=4 depth=1
+      ParDef p4 [1.22:1.23] offset=16 size=4 depth=1
+    Stmts:
+      LetStmt [2.5:27.7]
+        LetDefs:
+          VarDef beans [2.9:2.31] offset=-148 size=140 depth=1 inits=98,101,97,110,115,98,101,97,110,115...
+            Inits:
+              Init 7* [2.21:2.31]
+                AtomExpr STRCONST("beans") [2.25:2.31]
+        LetStmts:
+          AssignStmt [2.36:2.54]
+            NameExpr beans [2.36:2.40] def@[2.9:2.31] lval
+            BinExpr MUL [2.44:2.54]
+              AtomExpr INTCONST(5) [2.44:2.44]
+              AtomExpr STRCONST("beans") [2.48:2.54]
+          LetStmt [3.9:26.11]
+            LetDefs:
+              VarDef x [3.13:3.21] offset=-4 size=4 depth=2 inits=0
+                Inits:
+                  Init 1* [3.21:3.21]
+                    AtomExpr INTCONST(0) [3.21:3.21]
+            LetStmts:
+              AssignStmt [3.26:3.30]
+                NameExpr x [3.26:3.26] def@[3.13:3.21] lval
+                AtomExpr INTCONST(1) [3.30:3.30]
+              LetStmt [4.12:25.14]
+                LetDefs:
+                  VarDef y [4.16:4.24] offset=-4 size=4 depth=3 inits=0
+                    Inits:
+                      Init 1* [4.24:4.24]
+                        AtomExpr INTCONST(0) [4.24:4.24]
+                LetStmts:
+                  AssignStmt [4.29:4.33]
+                    NameExpr y [4.29:4.29] def@[4.16:4.24] lval
+                    AtomExpr INTCONST(1) [4.33:4.33]
+                  LetStmt [5.16:24.18]
+                    LetDefs:
+                      VarDef z [5.20:5.28] offset=-4 size=4 depth=4 inits=0
+                        Inits:
+                          Init 1* [5.28:5.28]
+                            AtomExpr INTCONST(0) [5.28:5.28]
+                    LetStmts:
+                      AssignStmt [5.33:5.37]
+                        NameExpr z [5.33:5.33] def@[5.20:5.28] lval
+                        AtomExpr INTCONST(1) [5.37:5.37]
+                      LetStmt [6.20:23.22]
+                        LetDefs:
+                          VarDef w [7.24:7.32] offset=-4 size=4 depth=5 inits=1
+                            Inits:
+                              Init 1* [7.32:7.32]
+                                AtomExpr INTCONST(1) [7.32:7.32]
+                          FunDef cool [8.24:8.47] depth=6 parsSize=12 varsSize=8
+                            Pars:
+                              ParDef p1 [8.33:8.34] offset=4 size=4 depth=6
+                              ParDef p2 [8.37:8.38] offset=8 size=4 depth=6
+                            Stmts:
+                              ExprStmt [8.43:8.47]
+                                BinExpr MUL [8.43:8.47]
+                                  NameExpr x [8.43:8.43] def@[3.13:3.21] lval
+                                  AtomExpr INTCONST(3) [8.47:8.47]
+                          FunDef very_cool [9.24:9.48] depth=6 parsSize=8 varsSize=8
+                            Pars:
+                              ParDef p1 [9.38:9.39] offset=4 size=4 depth=6
+                            Stmts:
+                              ExprStmt [9.44:9.48]
+                                BinExpr MUL [9.44:9.48]
+                                  NameExpr x [9.44:9.44] def@[3.13:3.21] lval
+                                  AtomExpr INTCONST(2) [9.48:9.48]
+                          FunDef extremely_cool [10.24:18.49] depth=6 parsSize=8 varsSize=28
+                            Pars:
+                              ParDef p3 [10.43:10.44] offset=4 size=4 depth=6
+                            Stmts:
+                              LetStmt [11.28:18.30]
+                                LetDefs:
+                                  VarDef thinking [12.32:12.53] offset=-28 size=20 depth=6 inits=116,116,116,116,116
+                                    Inits:
+                                      Init 5* [12.47:12.53]
+                                        AtomExpr CHRCONST('t') [12.51:12.53]
+                                  FunDef functione [13.32:13.57] depth=7 parsSize=8 varsSize=8
+                                    Pars:
+                                      ParDef par [13.46:13.48] offset=4 size=4 depth=7
+                                    Stmts:
+                                      ExprStmt [13.53:13.57]
+                                        BinExpr MUL [13.53:13.57]
+                                          NameExpr x [13.53:13.53] def@[3.13:3.21] lval
+                                          AtomExpr INTCONST(4) [13.57:13.57]
+                                LetStmts:
+                                  IfStmt [15.32:17.34]
+                                    BinExpr EQU [15.35:15.40]
+                                      AtomExpr INTCONST(1) [15.35:15.35]
+                                      AtomExpr INTCONST(3) [15.40:15.40]
+                                    IfThenStmts:
+                                      ExprStmt [16.36:16.47]
+                                        CallExpr very_cool [16.36:16.47] def@[9.24:9.48]
+                                          Args:
+                                            AtomExpr INTCONST(3) [16.46:16.46]
+                                    IfElseStmts:
+                              ExprStmt [18.33:18.49]
+                                CallExpr extremely_cool [18.33:18.49] def@[10.24:18.49]
+                                  Args:
+                                    AtomExpr INTCONST(3) [18.48:18.48]
+                        LetStmts:
+                          IfStmt [20.24:22.26]
+                            BinExpr EQU [20.27:20.32]
+                              AtomExpr INTCONST(1) [20.27:20.27]
+                              AtomExpr INTCONST(2) [20.32:20.32]
+                            IfThenStmts:
+                              ExprStmt [21.28:21.37]
+                                CallExpr cool [21.28:21.37] def@[8.24:8.47]
+                                  Args:
+                                    AtomExpr INTCONST(1) [21.33:21.33]
+                                    AtomExpr INTCONST(2) [21.36:21.36]
+                            IfElseStmts:
+      ExprStmt [28.3:28.3]
+        AtomExpr INTCONST(1) [28.3:28.3]
+:-) Done.

@@ -1,0 +1,17 @@
+fun main() = inc(5)
+
+fun inc(n) =
+    let
+        var m = 0
+    in
+        m = n,
+        m + 1
+    end
+
+fun f(a, b) =
+    let
+        var x = 7
+        var arr = 1000 * 17
+    in
+        31 * x
+    end
