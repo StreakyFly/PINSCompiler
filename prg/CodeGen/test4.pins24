@@ -1,0 +1,12 @@
+# probably ti da narobe rezultat, zarad istega razloga kot pri test-2.pins24 (v Machine dir), razlaga za test-2.pins24:
+# ker k ti hocs dobit v2 v f2 mas offset pomoje 8, ker je pac notranji variable, k pa hocs dobit v1 mas pa tut offset 8 ker mors najprej loadat frame pointer dokler ne prides do funkcije u keri je definiran v1
+# pa tko je tut z m
+
+fun main()= f1(3)
+
+fun f1(p1) =
+    let
+        fun f2(p2) = p1 + p2
+    in
+        f2(p1 + 1)
+    end

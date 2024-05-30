@@ -1,0 +1,18 @@
+fun fibonacci(n) =
+    if n <= 1 then
+        n
+    else
+        n = fibonacci(n - 1) + fibonacci(n - 2)
+    end, n
+
+fun main() =
+    let
+        var n = 11
+    in
+        putint(fibonacci(n)),
+        putstr("\n\00")
+    end,
+    0
+
+fun putint(int)
+fun putstr(straddr)
