@@ -16,7 +16,7 @@ public class CodeGen {
 	/**
 	 * Abstraktno sintaksno drevo z dodanimi atributi izracuna pomnilniske
 	 * predstavitve.
-	 * 
+	 *
 	 * Atributi:
 	 * <ol>
 	 * <li>({@link Abstr}) lokacija kode, ki pripada posameznemu vozliscu;</li>
@@ -39,14 +39,14 @@ public class CodeGen {
 
 		/**
 		 * Ustvari novo abstraktno sintaksno drevo z dodanimi atributi generiranja kode.
-		 * 
+		 *
 		 * @param attrAST  Abstraktno sintaksno drevo z dodanimi atributi pomnilniske
 		 *                 predstavitve.
 		 * @param attrCode Attribut: seznam ukazov, ki predstavljajo kodo programa.
 		 * @param attrData Attribut: seznam ukazov, ki predstavljajo podatke programa.
 		 */
 		public AttrAST(final Memory.AttrAST attrAST, final Map<AST.Node, List<PDM.CodeInstr>> attrCode,
-				final Map<AST.Node, List<PDM.DataInstr>> attrData) {
+					   final Map<AST.Node, List<PDM.DataInstr>> attrData) {
 			super(attrAST);
 			this.attrCode = attrCode;
 			this.attrData = attrData;
@@ -54,7 +54,7 @@ public class CodeGen {
 
 		/**
 		 * Ustvari novo abstraktno sintaksno drevo z dodanimi atributi generiranja kode.
-		 * 
+		 *
 		 * @param attrAST Abstraktno sintaksno drevo z dodanimi atributi generiranja
 		 *                kode.
 		 */
@@ -109,7 +109,7 @@ public class CodeGen {
 
 	/**
 	 * Izracuna kodo programa
-	 * 
+	 *
 	 * @param memoryAttrAST Abstraktno sintaksno drevo z dodanimi atributi izracuna
 	 *                      pomnilniske predstavitve.
 	 * @return Abstraktno sintaksno drevo z dodanimi atributi izracuna pomnilniske
@@ -138,7 +138,7 @@ public class CodeGen {
 
 		/**
 		 * Ustvari nov generator kode v abstraktnem sintaksnem drevesu.
-		 * 
+		 *
 		 * @param attrAST Abstraktno sintaksno drevo z dodanimi atributi izracuna
 		 *                pomnilniske predstavitve.
 		 */
@@ -148,7 +148,7 @@ public class CodeGen {
 
 		/**
 		 * Sprozi generiranje kode v abstraktnem sintaksnem drevesu.
-		 * 
+		 *
 		 * @return Abstraktno sintaksno drevo z dodanimi atributi izracuna pomnilniske
 		 *         predstavitve.
 		 */
@@ -178,19 +178,16 @@ public class CodeGen {
 
 				Mem.Frame funFrame = attrAST.attrFrame.get(funDef);
 
-				String baseName = funFrame.name;
-				String newName;
-				if (funNameCount.containsKey(baseName)) {
-					int count = funNameCount.get(baseName) + 1;
-					funNameCount.put(baseName, count);
-					newName = baseName + ":" + count;
+				String name = funFrame.name;
+				if (funNameCount.containsKey(name)) {
+					int count = funNameCount.get(name) + 1;
+					funNameCount.put(name, count);
+					name += ":" + count;
 				} else {
-					funNameCount.put(baseName, 0);
-					newName = baseName;
+					funNameCount.put(name, 0);
 				}
 
-				code.add(new PDM.LABEL(newName, loc));  // label for function
-//				code.add(new PDM.LABEL(funFrame.name, loc));  // label for function
+				code.add(new PDM.LABEL(name, loc));  // label for function
 
 				int varsSize = funFrame.varsSize - 8;
 				code.add(new PDM.PUSH(-varsSize, loc));
@@ -204,11 +201,10 @@ public class CodeGen {
 
 				// generate code for function body
 				for (AST.Stmt stmt : funDef.stmts) {
-					System.out.println(" stmt: " + stmt);
 					List<PDM.CodeInstr> stmtCode = stmt.accept(this, funFrame);
 					List<PDM.CodeInstr> cleanedCode = new LinkedList<>(stmtCode);
 					if (cleanedCode.size() > 1 && cleanedCode.getLast() instanceof PDM.POPN) {
-						// TODO I'm not sure this if statement is ok, when to remove the last two commands?
+						// TODO I'm not sure if this if statement is ok, when to remove the last two commands?
 						cleanedCode.removeLast();  // get rid of unnecessary code
 						cleanedCode.removeLast();
 					}
@@ -223,7 +219,7 @@ public class CodeGen {
 			}
 
 //			@Override
-//			public List<PDM.CodeInstr> visit(final AST.ParDef parDef, final Mem.Frame frame) {  // err, I don't think we actually need to do anything here
+//			public List<PDM.CodeInstr> visit(final AST.ParDef parDef, final Mem.Frame frame) {  // we don't actually need to do anything here
 //				System.out.println("In ParDef: " + parDef);
 //				List<PDM.CodeInstr> code = new LinkedList<>();
 ////				Mem.Access relAccess = attrAST.attrVarAccess.get(parDef);
@@ -287,7 +283,7 @@ public class CodeGen {
 				}
 
 				if (access instanceof Mem.RelAccess relAccess) {
-                    code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));  // start with current FP
+					code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));  // start with current FP
 
 					// adjust FP to the FP of the function where the variable is defined
 					int depthDiff = frame.depth - relAccess.depth;
@@ -363,7 +359,6 @@ public class CodeGen {
 
 			@Override
 			public List<PDM.CodeInstr> visit(final AST.CallExpr callExpr, final Mem.Frame frame) {
-				System.out.println("IN CALLEXPR");
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				AST.FunDef def = (AST.FunDef) attrAST.attrDef.get(callExpr);
 				Mem.Frame funFrame = attrAST.attrFrame.get(def);  // get the Frame of the function that's being called
@@ -380,9 +375,7 @@ public class CodeGen {
 				if (funNameCount.containsKey(funName) && funNameCount.get(funName) > 0) {
 					funName = funFrame.name + ":" + funNameCount.get(funName);
 				}
-//				code.add(new PDM.NAME(funFrame.name, loc));  // push the full name of the function, eg. 'main.f1.f2', not just 'f2'
 				code.add(new PDM.NAME(funName, loc));  // push the FULL name of the function, eg. 'main.f1:1', not just 'f1' or 'main.f1'
-
 				code.add(new PDM.CALL(funFrame, loc));
 
 				attrAST.attrCode.put(callExpr, code);
@@ -431,7 +424,6 @@ public class CodeGen {
 						}
 					}
 					data.add(new PDM.DATA(0, loc));  // null-terminate the string
-
 					attrAST.attrData.put(atomExpr, data);
 				} else {
 					code.add(new PDM.PUSH(Integer.parseInt(atomExpr.value), loc));
@@ -458,31 +450,21 @@ public class CodeGen {
 			}
 
 			private PDM.OPER.Oper convertOperASTtoPDM(AST.BinExpr.Oper oper) {
-				// TODO somehow turn around the if condition in AST.IfStmt visit method, so we don't need to flip the operators like this
-
-				PDM.OPER.Oper newOper = switch(oper) {
+                return switch(oper) {
 					case ADD -> PDM.OPER.Oper.ADD;
 					case SUB -> PDM.OPER.Oper.SUB;
 					case MUL -> PDM.OPER.Oper.MUL;
 					case DIV -> PDM.OPER.Oper.DIV;
 					case MOD -> PDM.OPER.Oper.MOD;
-					case OR  -> PDM.OPER.Oper.OR;
+					case OR -> PDM.OPER.Oper.OR;
 					case AND -> PDM.OPER.Oper.AND;
-//					case EQU -> PDM.OPER.Oper.EQU;
-					case EQU -> PDM.OPER.Oper.NEQ;  // eww
-//					case NEQ -> PDM.OPER.Oper.NEQ;
-					case NEQ -> PDM.OPER.Oper.EQU;  // eww
-//					case GTH -> PDM.OPER.Oper.GTH;
-					case GTH -> PDM.OPER.Oper.LEQ;  // eww
-//					case LTH -> PDM.OPER.Oper.LTH;
-					case LTH -> PDM.OPER.Oper.GEQ;  // eww
-//					case GEQ -> PDM.OPER.Oper.GEQ;
-					case GEQ -> PDM.OPER.Oper.LTH;  // eww
-//					case LEQ -> PDM.OPER.Oper.LEQ;
-					case LEQ -> PDM.OPER.Oper.GTH;  // eww
+					case EQU -> PDM.OPER.Oper.EQU;
+					case NEQ -> PDM.OPER.Oper.NEQ;
+					case GTH -> PDM.OPER.Oper.GTH;
+					case LTH -> PDM.OPER.Oper.LTH;
+					case GEQ -> PDM.OPER.Oper.GEQ;
+					case LEQ -> PDM.OPER.Oper.LEQ;
 				};
-
-				return newOper;
 			}
 
 			@Override
@@ -497,17 +479,16 @@ public class CodeGen {
 
 				switch (unExpr.oper) {
 					case NOT -> code.add(new PDM.OPER(PDM.OPER.Oper.NOT, loc));
-					case ADD -> {
-						// for ADD do nothing
-					}
+					case ADD -> {}  // for ADD do nothing
 					case SUB -> {
 						// negate the value of the expression
 						code.add(new PDM.PUSH(-1, loc));
 						code.add(new PDM.OPER(PDM.OPER.Oper.MUL, loc));
 					}
+					case VALUEAT -> code.add(new PDM.LOAD(loc));  // load the value from the address
 					case MEMADDR -> {
 						if (unExpr.expr instanceof AST.VarExpr varExpr) {
-                            AST.VarDef varDef = (AST.VarDef) attrAST.attrDef.get(varExpr);
+							AST.VarDef varDef = (AST.VarDef) attrAST.attrDef.get(varExpr);
 							Mem.Access access = attrAST.attrVarAccess.get(varDef);
 							if (access instanceof Mem.RelAccess relAccess) {
 								code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));
@@ -522,7 +503,6 @@ public class CodeGen {
 							}
 						}
 					}
-					case VALUEAT -> code.add(new PDM.LOAD(loc));
 				}
 
 				attrAST.attrCode.put(unExpr, code);
@@ -538,8 +518,8 @@ public class CodeGen {
 
 				// prepare for a conditional jump
 				code.addAll(ifStmt.cond.accept(this, frame));
-				code.add(new PDM.NAME("else:" + counter, loc));
 				code.add(new PDM.NAME("then:" + counter, loc));
+				code.add(new PDM.NAME("else:" + counter, loc));
 				code.add(new PDM.CJMP(loc));  // if false, jump to the else part, otherwise the then part
 
 				// execute the then part if the condition was true
@@ -571,8 +551,8 @@ public class CodeGen {
 
 				// prepare for a conditional jump
 				code.addAll(whileStmt.cond.accept(this, frame));
-				code.add(new PDM.NAME("endwhile:" + counter, loc));
 				code.add(new PDM.NAME("dowhile:" + counter, loc));
+				code.add(new PDM.NAME("endwhile:" + counter, loc));
 				code.add(new PDM.CJMP(loc));  // if false, jump to the end, otherwise execute the loop body
 
 				// prepare for the loop body
@@ -644,7 +624,7 @@ public class CodeGen {
 
 		/**
 		 * Izracuna seznam ukazov, ki predstavljajo kodo programa.
-		 * 
+		 *
 		 * @return Seznam ukazov, ki predstavljajo kodo programa.
 		 */
 		public List<PDM.CodeInstr> codeSegment() {
@@ -679,7 +659,7 @@ public class CodeGen {
 				funDef.pars.accept(this, arg);
 				funDef.stmts.accept(this, arg);
 				switch (funDef.name) {
-				case "main" -> main = attrAST.attrFrame.get(funDef);
+					case "main" -> main = attrAST.attrFrame.get(funDef);
 				}
 				return null;
 			}
@@ -687,16 +667,16 @@ public class CodeGen {
 			@Override
 			public Object visit(final AST.VarDef varDef, final Object arg) {
 				switch (attrAST.attrVarAccess.get(varDef)) {
-				case Mem.AbsAccess __: {
-					List<PDM.CodeInstr> code = attrAST.attrCode.get(varDef);
-					codeInitSegment.addAll(code);
-					break;
-				}
-				case Mem.RelAccess __: {
-					break;
-				}
-				default:
-					throw new Report.InternalError();
+					case Mem.AbsAccess __: {
+						List<PDM.CodeInstr> code = attrAST.attrCode.get(varDef);
+						codeInitSegment.addAll(code);
+						break;
+					}
+					case Mem.RelAccess __: {
+						break;
+					}
+					default:
+						throw new Report.InternalError();
 				}
 				return null;
 			}
@@ -731,7 +711,7 @@ public class CodeGen {
 
 		/**
 		 * Izracuna seznam ukazov, ki predstavljajo podatke programa.
-		 * 
+		 *
 		 * @return Seznam ukazov, ki predstavljajo podatke programa.
 		 */
 		public List<PDM.DataInstr> dataSegment() {
@@ -773,7 +753,7 @@ public class CodeGen {
 
 	/**
 	 * Zagon izracuna pomnilniske predstavitve kot samostojnega programa.
-	 * 
+	 *
 	 * @param cmdLineArgs Argumenti v ukazni vrstici.
 	 */
 	public static void main(final String[] cmdLineArgs) {

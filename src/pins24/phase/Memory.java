@@ -339,7 +339,7 @@ public class Memory {
 							size += 4 * initMultiplier;
 							break;
 						case STRCONST:
-							size += 4 * initMultiplier * decodeStrConst(init.value, null).size();
+							size += 4 * initMultiplier * decodeStrConst(init.value, attrAST.attrLoc.get(varDef)).size();
 							break;
 					}
 				}
@@ -359,14 +359,14 @@ public class Memory {
 					switch (init.value.type) {
 						case INTCONST:
 							inits.add(1);  // size of the value, eg. var x = 37 => 1
-							inits.add(decodeIntConst(atomExpr, null));  // integer value
+							inits.add(decodeIntConst(atomExpr, attrAST.attrLoc.get(varDef)));  // integer value
 							break;
 						case CHRCONST:
 							inits.add(1);  // size of the value, eg. var x = 'c' => 1
-							inits.add(decodeChrConst(atomExpr, null));  // ASCII value of the character
+							inits.add(decodeChrConst(atomExpr, attrAST.attrLoc.get(varDef)));  // ASCII value of the character
 							break;
 						case STRCONST:
-							Vector<Integer> strConst = decodeStrConst(atomExpr, null);
+							Vector<Integer> strConst = decodeStrConst(atomExpr, attrAST.attrLoc.get(varDef));
 							inits.add(strConst.size());  // size of the value, eg. var x = "beans\00" => 6
 							inits.addAll(strConst);  // ASCII values of the string
 							break;

@@ -553,6 +553,7 @@ public class SemAn {
 					throw new Report.Error(attrAST.attrLoc.get(assignStmt),
 							"Left-hand side of an assignment must either be a variable or an expression that ends with a ^ operator.");
 				}
+//				attrAST.attrLVal.put(assignStmt.dstExpr, true); // TODO added later, but I don't think it's needed, cuz VarExpr is already put in attrLVal as l-value
 				assignStmt.dstExpr.accept(this, null);
 				assignStmt.srcExpr.accept(this, null);
 				return null;

@@ -325,7 +325,7 @@ public class LexAn implements AutoCloseable {
 	/**
 	 * Handles escape sequences.
 	 *
-	 * @return The character represented by the escape sequence.
+	 * @return actual escape sequence as string, not converted to the character represented, eg. \n is printed as \n // OLD: The character represented by the escape sequence.
 	 */
 	private String handleEscapeSequence() {
 		nextChar();  // consume the backslash
@@ -339,7 +339,7 @@ public class LexAn implements AutoCloseable {
 	/**
 	 * Handles hexadecimal escape sequences.
 	 *
-	 * @return The character represented by the hexadecimal escape sequence.
+	 * @return actual escape sequence as string, not converted to the character represented, eg. \09 is printed as \09 // OLD: The character represented by the hexadecimal escape sequence.
 	 */
 	private String handleHexadecimalEscape() {
 		if (Character.digit(buffChar, 16) == -1) {
