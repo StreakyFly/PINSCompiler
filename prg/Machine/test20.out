@@ -1,3 +1,5 @@
+This is PINS'24 compiler (pushdown machine):
+
 Unsorted array:
 [4, 3, 20, 13, 8, 15, 10, 9, 14, 3, 20, 13, 10, 7, 6, 13, 14, 15, 18, 17, 2, 3, 2, 9, 16, 15, 12, 9, 20, 11]
 Sorted array:

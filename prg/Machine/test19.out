@@ -1,3 +1,5 @@
+This is PINS'24 compiler (pushdown machine):
+
 matrix L:
 [ 1,  0, 0 ]
 [ 4,  1, 0 ]

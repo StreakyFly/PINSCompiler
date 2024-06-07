@@ -268,7 +268,7 @@ public class Memory {
 			public Object visit(final AST.ParDef parDef, Object arg) {
 				int size = 4;
 				Vector<Integer> inits = null;  // parameters don't have initial values
-				String debugName = parDef.name; // + depthStack.peek();  // TODO is this necessary?
+				String debugName = parDef.name; // + depthStack.peek();  // Is this necessary?  // we handle this in CodeGen.java
 
 				Mem.RelAccess relAccess = new Mem.RelAccess(parsOffset, depthStack.peek(), size, inits, debugName);
 				attrAST.attrParAccess.put(parDef, relAccess);
@@ -286,7 +286,7 @@ public class Memory {
 				varsSizeStack.push(varsSizeStack.pop() + size);
 				offsetStack.push(offsetStack.pop() + size);
 				Vector<Integer> inits = getInits(varDef);
-				String debugName = varDef.name; // + depthStack.peek();  // TODO is this necessary?
+				String debugName = varDef.name; // + depthStack.peek();  // Is this necessary?  // we handle this in CodeGen.java
 
 				Mem.Access access;
 				if (depthStack.peek() == 0) {  // global variable

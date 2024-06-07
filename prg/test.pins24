@@ -1,9 +1,9 @@
-fun main()=inc(5)
+var x = 5
 
-fun inc(n)=
-    let
-        var m=0
-    in
-        m=n,
-        m+1
-    end
+fun main() =
+    x = x + 2,
+    putint(x), putstr("\n\00"),  # 7
+    x  # 7
+
+fun putstr(straddr)
+fun putint(int)

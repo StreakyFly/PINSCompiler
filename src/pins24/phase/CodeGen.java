@@ -161,7 +161,7 @@ public class CodeGen {
 		/** Obiskovalec, ki generira kodo v abstraktnem sintaksnem drevesu. */
 		private class Generator implements AST.FullVisitor<List<PDM.CodeInstr>, Mem.Frame> {
 
-			private Map<String, Integer> funNameCount = new HashMap<>();  // to track count of functions with the same name
+			private final Map<String, Integer> funNameCount = new HashMap<>();  // to track count of functions with the same name
 
 			@SuppressWarnings({"doclint:missing"})
 			public Generator() {
@@ -170,96 +170,84 @@ public class CodeGen {
 			@Override
 			public List<PDM.CodeInstr> visit(final AST.FunDef funDef, final Mem.Frame frame) {
 				if (funDef.stmts.getAll().isEmpty()) {  // return if function has no body
-					return null;
+					return new LinkedList<>();
 				}
 
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				Report.Locatable loc = attrAST.attrLoc.get(funDef);
-
 				Mem.Frame funFrame = attrAST.attrFrame.get(funDef);
 
-				String name = funFrame.name;
-				if (funNameCount.containsKey(name)) {
-					int count = funNameCount.get(name) + 1;
-					funNameCount.put(name, count);
-					name += ":" + count;
+				String labelName = funFrame.name;
+				if (funNameCount.containsKey(labelName)) {
+					int count = funNameCount.get(labelName) + 1;
+					funNameCount.put(labelName, count);
+					labelName += ":" + count;
 				} else {
-					funNameCount.put(name, 0);
+					funNameCount.put(labelName, 0);
 				}
 
-				code.add(new PDM.LABEL(name, loc));  // label for function
+				code.add(new PDM.LABEL(labelName, loc));  // label for function
 
-				int varsSize = funFrame.varsSize - 8;
+				int varsSize = funFrame.varsSize - 8;  // -8 because varsSize contains the size of FP and RA (4 bytes each)
+				// initialize the memory space for all the local variables (accepts a negative operand)
 				code.add(new PDM.PUSH(-varsSize, loc));
 				code.add(new PDM.POPN(loc));
 
-//				for (AST.ParDef par : funDef.pars) {
-//					List<PDM.CodeInstr> parCode = par.accept(this, frame);
-//					System.out.println("parCode: " + parCode);
-//					code.addAll(parCode);
+//				for (AST.ParDef par : funDef.pars) {  // parameters don't need to be handled here
+//					code.addAll(par.accept(this, frame));
 //				}
 
-				// generate code for function body
 				for (AST.Stmt stmt : funDef.stmts) {
 					List<PDM.CodeInstr> stmtCode = stmt.accept(this, funFrame);
 					List<PDM.CodeInstr> cleanedCode = new LinkedList<>(stmtCode);
 					if (cleanedCode.size() > 1 && cleanedCode.getLast() instanceof PDM.POPN) {
-						// TODO I'm not sure if this if statement is ok, when to remove the last two commands?
-						cleanedCode.removeLast();  // get rid of unnecessary code
-						cleanedCode.removeLast();
+						// I'm not sure if this If statement is ok; when to remove the last two commands?
+						cleanedCode.removeLast();  // get rid of unnecessary code (POPN)
+						cleanedCode.removeLast();  // get rid of unnecessary code (PUSH)
 					}
 					code.addAll(cleanedCode);
 				}
+//				code.addAll(funDef.stmts.accept(this, funFrame));
 
-				code.add(new PDM.PUSH(funFrame.parsSize - 4, loc));
+				int parsSize = funFrame.parsSize - 4;  // -4 because parsSize contains the size of SL (4 bytes)
+				code.add(new PDM.PUSH(parsSize, loc));
 				code.add(new PDM.RETN(funFrame, loc));  // return from function
 
 				attrAST.attrCode.put(funDef, code);
-				return code;
-			}
 
-//			@Override
-//			public List<PDM.CodeInstr> visit(final AST.ParDef parDef, final Mem.Frame frame) {  // we don't actually need to do anything here
-//				System.out.println("In ParDef: " + parDef);
-//				List<PDM.CodeInstr> code = new LinkedList<>();
-////				Mem.Access relAccess = attrAST.attrVarAccess.get(parDef);
-////
-////				if (relAccess != null) {
-////					code.add(new PDM.LABEL(parDef.name + frame.depth, null));
-////				}
-//
-//				attrAST.attrCode.put(parDef, code);
-//				return code;
-//			}
+//				// Don't return this function's code instructions to parent,
+//				// as that may duplicate function definition instructions in case of nested functions.
+//				// See `CodeSegmentGenerator.Generator.visit(AST.FunDef)`.
+				return new LinkedList<>();
+			}
 
 			@Override
 			public List<PDM.CodeInstr> visit(final AST.VarDef varDef, final Mem.Frame frame) {
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				List<PDM.DataInstr> data = new LinkedList<>();
-				Mem.Access access = attrAST.attrVarAccess.get(varDef);
 				Report.Locatable loc = attrAST.attrLoc.get(varDef);
+				Mem.Access access = attrAST.attrVarAccess.get(varDef);
 
 				String label = ":" + labelCounter++;
-				if (access instanceof Mem.AbsAccess) {  // global variable
-					// code
-					code.add(new PDM.NAME(varDef.name, loc));
-					code.add(new PDM.NAME(label, loc));
-					code.add(new PDM.INIT(loc));
-					// data
-					data.add(new PDM.LABEL(varDef.name, loc));
-					data.add(new PDM.SIZE(access.size, loc));
-					data.add(new PDM.LABEL(label, loc));
-				} else if (access instanceof Mem.RelAccess) {  // local variable
-					// code
-					code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));
-					code.add(new PDM.PUSH(((Mem.RelAccess) access).offset, loc));
-					code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
-					code.add(new PDM.NAME(label, loc));
-					code.add(new PDM.INIT(loc));
-					// data
-					data.add(new PDM.LABEL(label, loc));
+				switch (access) {
+					case Mem.AbsAccess absAccess -> {  // global variable
+						code.add(new PDM.NAME(absAccess.name, loc));
+						code.add(new PDM.NAME(label, loc));
+						code.add(new PDM.INIT(loc));
+						data.add(new PDM.LABEL(absAccess.name, loc));
+						data.add(new PDM.SIZE(absAccess.size, loc));
+					}
+					case Mem.RelAccess relAccess -> {  // local variable
+						code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));
+						code.add(new PDM.PUSH(relAccess.offset, loc));
+						code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+						code.add(new PDM.NAME(label, loc));
+						code.add(new PDM.INIT(loc));
+					}
+					default -> throw new Report.Error("RelAccess or AbsAccess expected in VarDef visit method");
 				}
 
+				data.add(new PDM.LABEL(label, loc));
 				if (access.inits != null && !access.inits.isEmpty()) {
 					for (Integer initValue : access.inits) {
 						data.add(new PDM.DATA(initValue, loc));
@@ -275,50 +263,54 @@ public class CodeGen {
 			public List<PDM.CodeInstr> visit(final AST.VarExpr varExpr, final Mem.Frame frame) {
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				Report.Locatable loc = attrAST.attrLoc.get(varExpr);
-
 				AST.Def def = attrAST.attrDef.get(varExpr);
-				Mem.Access access = attrAST.attrVarAccess.get(def);
-				if (access == null) {
-					access = attrAST.attrParAccess.get(def);
-				}
 
-				if (access instanceof Mem.RelAccess relAccess) {
-					code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));  // start with current FP
-
-					// adjust FP to the FP of the function where the variable is defined
-					int depthDiff = frame.depth - relAccess.depth;
-					for (int i = 0; i < depthDiff; i++) {
-						code.add(new PDM.LOAD(loc));  // load static link from FP
+				Mem.Access access;
+				switch (def) {
+					case final AST.VarDef varDef: {
+						access = attrAST.attrVarAccess.get(varDef);
+						break;
 					}
-					code.add(new PDM.PUSH(relAccess.offset, loc));
-					code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
-					code.add(new PDM.LOAD(loc));  // load the value of the variable
-				} else if (access instanceof Mem.AbsAccess absAccess) {
-					code.add(new PDM.NAME(absAccess.name, loc));
-					code.add(new PDM.LOAD(loc));  // load the value of the variable
+					case final AST.ParDef parDef: {
+						access = attrAST.attrParAccess.get(parDef);
+						break;
+					}
+					default:
+						throw new Report.Error("VarDef or ParDef expected in VarExpr visit method");
 				}
+
+				switch (access) {
+					case final Mem.RelAccess relAccess: {
+						code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));  // start with current FP
+						// adjust FP to the FP of the function where the variable is defined
+						int depthDiff = frame.depth - relAccess.depth;
+						for (int i = 0; i < depthDiff; i++) {
+							code.add(new PDM.LOAD(loc));  // load static link from FP
+						}
+						code.add(new PDM.PUSH(relAccess.offset, loc));
+						code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+						break;
+					}
+					case final Mem.AbsAccess absAccess: {
+						code.add(new PDM.NAME(absAccess.name, loc));
+						break;
+					}
+					default:
+						throw new Report.Error("RelAccess or AbsAccess expected in VarExpr visit method");
+				}
+
+				code.add(new PDM.LOAD(loc));  // load the value of the variable
 
 				attrAST.attrCode.put(varExpr, code);
 				return code;
 			}
 
 			@Override
-			public List<PDM.CodeInstr> visit(final AST.LetStmt letStmt, final Mem.Frame frame) {
-				List<PDM.CodeInstr> code = new LinkedList<>();
+			public List<PDM.CodeInstr> visit(AST.LetStmt letStmt, Mem.Frame frame) {
+				List<PDM.CodeInstr> code = new ArrayList<>();
 
-				for (AST.Def def : letStmt.defs) {
-					if (def instanceof AST.FunDef) {
-						def.accept(this, frame);
-					} else {
-						List<PDM.CodeInstr> varDefCode = def.accept(this, frame);
-						code.addAll(varDefCode);
-					}
-				}
-
-				for (AST.Stmt stmt : letStmt.stmts) {
-					List<PDM.CodeInstr> stmtCode = stmt.accept(this, frame);
-					code.addAll(stmtCode);
-				}
+				code.addAll(letStmt.defs.accept(this, frame));
+				code.addAll(letStmt.stmts.accept(this, frame));
 
 				attrAST.attrCode.put(letStmt, code);
 				return code;
@@ -329,8 +321,7 @@ public class CodeGen {
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				Report.Locatable loc = attrAST.attrLoc.get(exprStmt);
 
-				List<PDM.CodeInstr> exprCode = exprStmt.expr.accept(this, frame);
-				code.addAll(exprCode);
+				code.addAll(exprStmt.expr.accept(this, frame));
 
 				code.add(new PDM.PUSH(4, loc));
 				code.add(new PDM.POPN(loc));
@@ -347,9 +338,8 @@ public class CodeGen {
 				List<PDM.CodeInstr> srcExprCode = assignStmt.srcExpr.accept(this, frame);  // right side of the assignment
 				code.addAll(srcExprCode);
 				List<PDM.CodeInstr> dstExprCode = assignStmt.dstExpr.accept(this, frame);  // left side of the assignment
-				List<PDM.CodeInstr> dstCleanedExprCode = new LinkedList<>(dstExprCode);
-				dstCleanedExprCode.removeLast();  // removes the unnecessary LOAD command - we don't need to load the value of the variable we're assigning to
-				code.addAll(dstCleanedExprCode);
+				dstExprCode = removeLastLoadCodeInstr(dstExprCode);  // removes the unnecessary LOAD command - we don't need to load the value of the variable we're assigning to
+				code.addAll(dstExprCode);
 
 				code.add(new PDM.SAVE(loc));
 
@@ -360,23 +350,42 @@ public class CodeGen {
 			@Override
 			public List<PDM.CodeInstr> visit(final AST.CallExpr callExpr, final Mem.Frame frame) {
 				List<PDM.CodeInstr> code = new LinkedList<>();
-				AST.FunDef def = (AST.FunDef) attrAST.attrDef.get(callExpr);
-				Mem.Frame funFrame = attrAST.attrFrame.get(def);  // get the Frame of the function that's being called
 				Report.Locatable loc = attrAST.attrLoc.get(callExpr);
+				AST.FunDef def = (AST.FunDef) attrAST.attrDef.get(callExpr);
+				Mem.Frame callingFunFrame = attrAST.attrFrame.get(def);  // get the Frame of the function that's being called
 
-				for (AST.Expr arg : callExpr.args) {
-					List<PDM.CodeInstr> argCode = arg.accept(this, frame);
-					code.addAll(argCode);
+//				for (AST.Expr arg : callExpr.args) {
+//					code.addAll(arg.accept(this, frame));
+//				}
+				// semantic rules state that function arguments are evaluated from right to left
+				for (int i = callExpr.args.size() - 1; i >= 0; i--) {
+					code.addAll(callExpr.args.get(i).accept(this, frame));
 				}
 
-				code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));
-//				code.add(new PDM.LOAD(loc));  // TODO err, this messes up nested functions
-				String funName = funFrame.name;
-				if (funNameCount.containsKey(funName) && funNameCount.get(funName) > 0) {
-					funName = funFrame.name + ":" + funNameCount.get(funName);
+				// calling function is declared in the same or outer scopes of the caller function
+				if (callingFunFrame.depth - 1 <= frame.depth) {
+					int depthDiff = frame.depth - callingFunFrame.depth;
+					code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));
+					// calling function is at the same depth as the current function
+					if (depthDiff == 0) {
+						code.add(new PDM.LOAD(loc));
+					} else {
+						// get the FP of the caller
+						for (int i = 0; i < depthDiff; i++) {
+							code.add(new PDM.PUSH(-4, loc));
+							code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+							code.add(new PDM.LOAD(loc));
+						}
+					}
 				}
-				code.add(new PDM.NAME(funName, loc));  // push the FULL name of the function, eg. 'main.f1:1', not just 'f1' or 'main.f1'
-				code.add(new PDM.CALL(funFrame, loc));
+				// calling function is declared in inner scopes of the caller function - not visible.
+				else {
+					throw new Report.Error("Function " + def.name + " is not visible in the current scope.");
+				}
+
+				String labelName = getFullFunName(callingFunFrame.name);
+				code.add(new PDM.NAME(labelName, loc));  // push the full name of the function, eg. 'main.f1:1', not just 'f1' or 'main.f1'
+				code.add(new PDM.CALL(callingFunFrame, loc));
 
 				attrAST.attrCode.put(callExpr, code);
 				return code;
@@ -388,83 +397,101 @@ public class CodeGen {
 				List<PDM.DataInstr> data = new LinkedList<>();
 				Report.Locatable loc = attrAST.attrLoc.get(atomExpr);
 
-				if (atomExpr.type == AST.AtomExpr.Type.STRCONST) {
-					String strValue = atomExpr.value.substring(1, atomExpr.value.length() - 1);  // remove outer double quotes from the string
-					String label = "str:" + labelCounter++;
-
-					code.add(new PDM.NAME(label, loc));
-
-					data.add(new PDM.LABEL(label, loc));
-					for (int i = 0; i < strValue.length(); i++) {
-						char c = strValue.charAt(i);
-						if (c == '\\') {
-							i++;
-							switch (strValue.charAt(i)) {
-								case 'n':
-									data.add(new PDM.DATA((int) '\n', loc));
-									break;
-								case '\"':
-									data.add(new PDM.DATA((int) '\"', loc));
-									break;
-								case '\\':
-									data.add(new PDM.DATA((int) '\\', loc));
-									break;
-								default:
-									if (Character.isDigit(strValue.charAt(i))) {
-										String hex = strValue.substring(i, i+2);
-										int ascii = Integer.parseInt(hex, 16);
-										data.add(new PDM.DATA(ascii, loc));
-										i++;
-									} else {
-										System.out.println("Undefined escape sequence (CodeGen > Generator > visit(AST.AtomExpr...): \\" + strValue.charAt(i));
-									}
-							}
-						} else {
-							data.add(new PDM.DATA((int) c, loc));
+				switch (atomExpr.type) {
+					case INTCONST -> code.add(new PDM.PUSH(Memory.decodeIntConst(atomExpr, loc), loc));
+					case CHRCONST -> code.add(new PDM.PUSH(Memory.decodeChrConst(atomExpr, loc), loc));
+					case STRCONST -> {
+						String strConstLabel = ":" + labelCounter++;
+						code.add(new PDM.NAME(strConstLabel, loc));
+						data.add(new PDM.LABEL(strConstLabel, loc));
+						Vector<Integer> values = Memory.decodeStrConst(atomExpr, loc);
+						for (Integer value : values) {
+							data.add(new PDM.DATA(value, loc));
 						}
+						attrAST.attrData.put(atomExpr, data);
 					}
-					data.add(new PDM.DATA(0, loc));  // null-terminate the string
-					attrAST.attrData.put(atomExpr, data);
-				} else {
-					code.add(new PDM.PUSH(Integer.parseInt(atomExpr.value), loc));
 				}
 
 				attrAST.attrCode.put(atomExpr, code);
 				return code;
 			}
 
+//			@Override
+//			public List<PDM.CodeInstr> visit(final AST.BinExpr binExpr, final Mem.Frame frame) {
+//				// TODO WARNING! This method DOES follow semantic rules which state that the right operand should be evaluated first and then the left one.
+//				//  although I think it should be the other way around
+//				List<PDM.CodeInstr> code = new LinkedList<>();
+//				Report.Locatable loc = attrAST.attrLoc.get(binExpr);
+//
+//				// semantic rules state that the right operand should be evaluated first and then the left one
+//				code.addAll(binExpr.sndExpr.accept(this, frame));
+//				code.addAll(binExpr.fstExpr.accept(this, frame));
+//
+//				// pretty sure this does the same thing as using addCodeInstrToSwapBinOperands() method
+////				if (binExpr.oper == AST.BinExpr.Oper.DIV || binExpr.oper == AST.BinExpr.Oper.SUB || binExpr.oper == AST.BinExpr.Oper.MOD) {
+////					code.addAll(binExpr.fstExpr.accept(this, frame));
+////					code.addAll(binExpr.sndExpr.accept(this, frame));
+////				} else {
+////					code.addAll(binExpr.sndExpr.accept(this, frame));
+////					code.addAll(binExpr.fstExpr.accept(this, frame));
+////				}
+//
+//				switch (binExpr.oper) {
+//					case OR -> code.add(new PDM.OPER(PDM.OPER.Oper.OR, loc));
+//					case AND -> code.add(new PDM.OPER(PDM.OPER.Oper.AND, loc));
+//					case EQU -> code.add(new PDM.OPER(PDM.OPER.Oper.EQU, loc));
+//					case GEQ -> code.add(new PDM.OPER(PDM.OPER.Oper.LEQ, loc));
+//					case LEQ -> code.add(new PDM.OPER(PDM.OPER.Oper.GEQ, loc));
+//					case GTH -> code.add(new PDM.OPER(PDM.OPER.Oper.LTH, loc));
+//					case LTH -> code.add(new PDM.OPER(PDM.OPER.Oper.GTH, loc));
+//					case ADD -> code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+//					case MUL -> code.add(new PDM.OPER(PDM.OPER.Oper.MUL, loc));
+//					case NEQ -> code.add(new PDM.OPER(PDM.OPER.Oper.NEQ, loc));
+//					case DIV -> {
+//						code.addAll(addCodeInstrToSwapBinOperands(loc));
+//						code.add(new PDM.OPER(PDM.OPER.Oper.DIV, loc));
+//					}
+//					case SUB -> {
+//						code.addAll(addCodeInstrToSwapBinOperands(loc));
+//						code.add(new PDM.OPER(PDM.OPER.Oper.SUB, loc));
+//					}
+//					case MOD -> {
+//						code.addAll(addCodeInstrToSwapBinOperands(loc));
+//						code.add(new PDM.OPER(PDM.OPER.Oper.MOD, loc));
+//					}
+//				}
+//
+//				attrAST.attrCode.put(binExpr, code);
+//				return code;
+//			}
+
 			@Override
 			public List<PDM.CodeInstr> visit(final AST.BinExpr binExpr, final Mem.Frame frame) {
+				// TODO WARNING! This method doesn't follow semantic rules which state that the right operand should be evaluated first and then the left one.
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				Report.Locatable loc = attrAST.attrLoc.get(binExpr);
 
-				List<PDM.CodeInstr> fstExprCode = binExpr.fstExpr.accept(this, frame);
-				List<PDM.CodeInstr> sndExprCode = binExpr.sndExpr.accept(this, frame);
-				code.addAll(fstExprCode);
-				code.addAll(sndExprCode);
+				code.addAll(binExpr.fstExpr.accept(this, frame));
+				code.addAll(binExpr.sndExpr.accept(this, frame));
 
-				code.add(new PDM.OPER(convertOperASTtoPDM(binExpr.oper), loc));
+				switch (binExpr.oper) {
+					case OR -> code.add(new PDM.OPER(PDM.OPER.Oper.OR, loc));
+					case AND -> code.add(new PDM.OPER(PDM.OPER.Oper.AND, loc));
+					case EQU -> code.add(new PDM.OPER(PDM.OPER.Oper.EQU, loc));
+					case GEQ -> code.add(new PDM.OPER(PDM.OPER.Oper.GEQ, loc));
+					case LEQ -> code.add(new PDM.OPER(PDM.OPER.Oper.LEQ, loc));
+					case GTH -> code.add(new PDM.OPER(PDM.OPER.Oper.GTH, loc));
+					case LTH -> code.add(new PDM.OPER(PDM.OPER.Oper.LTH, loc));
+					case ADD -> code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+					case MUL -> code.add(new PDM.OPER(PDM.OPER.Oper.MUL, loc));
+					case NEQ -> code.add(new PDM.OPER(PDM.OPER.Oper.NEQ, loc));
+					case DIV -> code.add(new PDM.OPER(PDM.OPER.Oper.DIV, loc));
+					case SUB -> code.add(new PDM.OPER(PDM.OPER.Oper.SUB, loc));
+					case MOD -> code.add(new PDM.OPER(PDM.OPER.Oper.MOD, loc));
+				}
 
 				attrAST.attrCode.put(binExpr, code);
 				return code;
-			}
-
-			private PDM.OPER.Oper convertOperASTtoPDM(AST.BinExpr.Oper oper) {
-                return switch(oper) {
-					case ADD -> PDM.OPER.Oper.ADD;
-					case SUB -> PDM.OPER.Oper.SUB;
-					case MUL -> PDM.OPER.Oper.MUL;
-					case DIV -> PDM.OPER.Oper.DIV;
-					case MOD -> PDM.OPER.Oper.MOD;
-					case OR -> PDM.OPER.Oper.OR;
-					case AND -> PDM.OPER.Oper.AND;
-					case EQU -> PDM.OPER.Oper.EQU;
-					case NEQ -> PDM.OPER.Oper.NEQ;
-					case GTH -> PDM.OPER.Oper.GTH;
-					case LTH -> PDM.OPER.Oper.LTH;
-					case GEQ -> PDM.OPER.Oper.GEQ;
-					case LEQ -> PDM.OPER.Oper.LEQ;
-				};
 			}
 
 			@Override
@@ -472,37 +499,20 @@ public class CodeGen {
 				List<PDM.CodeInstr> code = new LinkedList<>();
 				Report.Locatable loc = attrAST.attrLoc.get(unExpr);
 
-				if (unExpr.oper != AST.UnExpr.Oper.MEMADDR) {
-					List<PDM.CodeInstr> exprCode = unExpr.expr.accept(this, frame);
-					code.addAll(exprCode);
+				List<PDM.CodeInstr> exprCode = unExpr.expr.accept(this, frame);
+
+				if (unExpr.oper == AST.UnExpr.Oper.MEMADDR) {
+					exprCode = removeLastLoadCodeInstr(exprCode);
 				}
+
+				code.addAll(exprCode);
 
 				switch (unExpr.oper) {
 					case NOT -> code.add(new PDM.OPER(PDM.OPER.Oper.NOT, loc));
-					case ADD -> {}  // for ADD do nothing
-					case SUB -> {
-						// negate the value of the expression
-						code.add(new PDM.PUSH(-1, loc));
-						code.add(new PDM.OPER(PDM.OPER.Oper.MUL, loc));
-					}
+					case ADD -> {}  // do nothing
+					case SUB -> code.add(new PDM.OPER(PDM.OPER.Oper.NEG, loc));  // negate the value
+					case MEMADDR -> {}  // remove the last LOAD command (handled above)
 					case VALUEAT -> code.add(new PDM.LOAD(loc));  // load the value from the address
-					case MEMADDR -> {
-						if (unExpr.expr instanceof AST.VarExpr varExpr) {
-							AST.VarDef varDef = (AST.VarDef) attrAST.attrDef.get(varExpr);
-							Mem.Access access = attrAST.attrVarAccess.get(varDef);
-							if (access instanceof Mem.RelAccess relAccess) {
-								code.add(new PDM.REGN(PDM.REGN.Reg.FP, loc));
-								int depthDiff = frame.depth - relAccess.depth;
-								for (int i = 0; i < depthDiff; i++) {
-									code.add(new PDM.LOAD(loc));  // load static link from FP
-								}
-								code.add(new PDM.PUSH(relAccess.offset, loc));
-								code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
-							} else if (access instanceof Mem.AbsAccess absAccess) {
-								code.add(new PDM.NAME(absAccess.name, loc));
-							}
-						}
-					}
 				}
 
 				attrAST.attrCode.put(unExpr, code);
@@ -515,25 +525,30 @@ public class CodeGen {
 				Report.Locatable loc = attrAST.attrLoc.get(ifStmt);
 
 				int counter = labelCounter++;
+				String thenLabel = "then:" + counter;
+				String elseLabel = "else:" + counter;
+				String endifLabel = "endif:" + counter;
 
 				// prepare for a conditional jump
 				code.addAll(ifStmt.cond.accept(this, frame));
-				code.add(new PDM.NAME("then:" + counter, loc));
-				code.add(new PDM.NAME("else:" + counter, loc));
+				code.add(new PDM.NAME(thenLabel, loc));
+				code.add(new PDM.NAME(elseLabel, loc));
 				code.add(new PDM.CJMP(loc));  // if false, jump to the else part, otherwise the then part
 
 				// execute the then part if the condition was true
-				code.add(new PDM.LABEL("then:" + counter, loc));
+				code.add(new PDM.LABEL(thenLabel, loc));
 				code.addAll(ifStmt.thenStmts.accept(this, frame));
-				code.add(new PDM.NAME("endif:" + counter, loc));
+				code.add(new PDM.NAME(endifLabel, loc));
 				code.add(new PDM.UJMP(loc));  // jump to the end of the if statement
 
 				// execute the else part if the condition was false
-				code.add(new PDM.LABEL("else:" + counter, loc));
+				code.add(new PDM.LABEL(elseLabel, loc));
 				code.addAll(ifStmt.elseStmts.accept(this, frame));
+				code.add(new PDM.NAME(endifLabel, loc));
+				code.add(new PDM.UJMP(loc));  // jump to the end of the if statement
 
 				// label marking the end of the if statement
-				code.add(new PDM.LABEL("endif:" + counter, loc));
+				code.add(new PDM.LABEL(endifLabel, loc));
 
 				attrAST.attrCode.put(ifStmt, code);
 				return code;
@@ -545,45 +560,97 @@ public class CodeGen {
 				Report.Locatable loc = attrAST.attrLoc.get(whileStmt);
 
 				int counter = labelCounter++;
+				String condLabel = "while:" + counter;
+				String doLabel = "dowhile:" + counter;
+				String endLabel = "endwhile:" + counter;
 
 				// label for the start of the loop to jump back to
-				code.add(new PDM.LABEL("while:" + counter, loc));
+				code.add(new PDM.LABEL(condLabel, loc));
 
 				// prepare for a conditional jump
-				code.addAll(whileStmt.cond.accept(this, frame));
-				code.add(new PDM.NAME("dowhile:" + counter, loc));
-				code.add(new PDM.NAME("endwhile:" + counter, loc));
+				code.addAll(whileStmt.cond.accept(this, frame));  // code for the condition
+				code.add(new PDM.NAME(doLabel, loc));
+				code.add(new PDM.NAME(endLabel, loc));
 				code.add(new PDM.CJMP(loc));  // if false, jump to the end, otherwise execute the loop body
 
 				// prepare for the loop body
-				code.add(new PDM.LABEL("dowhile:" + counter, loc));  // label for the start of the loop body
-				code.addAll(whileStmt.stmts.accept(this, frame));  // generate code for the loop body
-
+				code.add(new PDM.LABEL(doLabel, loc));  // label marking the start of the loop body
+				code.addAll(whileStmt.stmts.accept(this, frame));  // code for the loop body
 				// unconditional jump back to the start of the loop
-				code.add(new PDM.NAME("while:" + counter, loc));
+				code.add(new PDM.NAME(condLabel, loc));
 				code.add(new PDM.UJMP(loc));
 
 				// label marking the end of the loop
-				code.add(new PDM.LABEL("endwhile:" + counter, loc));
+				code.add(new PDM.LABEL(endLabel, loc));
 
 				attrAST.attrCode.put(whileStmt, code);
 				return code;
 			}
 
 			@Override
-			public List<PDM.CodeInstr> visit(final AST.Nodes nodes, final Mem.Frame frame) {
+			public List<PDM.CodeInstr> visit(final AST.Nodes<? extends AST.Node> nodes, final Mem.Frame frame) {
 				List<PDM.CodeInstr> code = new LinkedList<>();
-				for (Object objNode : nodes) {
-					AST.Node node = (AST.Node) objNode;
-					List<PDM.CodeInstr> nodeCode = node.accept(this, frame);
-					if (nodeCode != null) {
-						code.addAll(nodeCode);
-					}
+				for (final AST.Node node : nodes) {
+					code.addAll(node.accept(this, frame));
 				}
 				return code;
 			}
 
+			private String getFullFunName(String funName) {
+				String fullFunName = funName;
+				if (funNameCount.containsKey(funName) && funNameCount.get(funName) > 0) {
+					fullFunName += ":" + funNameCount.get(funName);
+				}
+				return fullFunName;
+			}
 
+			private List<PDM.CodeInstr> removeLastLoadCodeInstr(List<PDM.CodeInstr> code) {
+				if (code.size() > 1 && code.getLast() instanceof PDM.LOAD) {
+					List<PDM.CodeInstr> newCode = new LinkedList<>(code);
+					newCode.removeLast();
+					return newCode;
+				} else {
+					throw new Report.Error("Attempted to remove the last LOAD command, but the last command is not a LOAD command");
+				}
+			}
+
+			private List<PDM.CodeInstr> addCodeInstrToSwapBinOperands(Report.Locatable loc) {
+				List<PDM.CodeInstr> code = new ArrayList<>();
+
+				// A B A_address
+				code.add(new PDM.REGN(PDM.REGN.Reg.SP, loc));
+				code.add(new PDM.PUSH(4, loc));
+				code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+
+				// A B A
+				code.add(new PDM.LOAD(loc));
+
+				// A B A B_address
+				code.add(new PDM.REGN(PDM.REGN.Reg.SP, loc));
+				code.add(new PDM.PUSH(4, loc));
+				code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+
+				// A B A B
+				code.add(new PDM.LOAD(loc));
+
+				// A B A B A1_address
+				code.add(new PDM.REGN(PDM.REGN.Reg.SP, loc));
+				code.add(new PDM.PUSH(12, loc));
+				code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+
+				// B B A
+				code.add(new PDM.SAVE(loc));
+
+				// B B A B2_address
+				code.add(new PDM.REGN(PDM.REGN.Reg.SP, loc));
+				code.add(new PDM.PUSH(4, loc));
+				code.add(new PDM.OPER(PDM.OPER.Oper.ADD, loc));
+
+				// B A
+				code.add(new PDM.SAVE(loc));
+
+				return code;
+			}
 
 
 		}

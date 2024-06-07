@@ -129,12 +129,8 @@ if [ -d "$2" ]; then
             output_file2="${file%.*}.out"
             if [[ -f "$output_file" || -f "$output_file2" ]]; then
                 if [ -f "$output_file" ]; then
-                    echo "Output file found: $output_file"
-                    # run the test
                     run_test "$1" "$file" "$output_file"
                 elif [ -f "$output_file2" ]; then
-                    echo "Output file found: $output_file2"
-                    # run the test
                     run_test "$1" "$file" "$output_file2"
                 else
                     echo "Error: Neither $output_file nor $output_file2 found."
