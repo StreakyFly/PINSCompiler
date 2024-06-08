@@ -1,0 +1,99 @@
+program -> definition program2 .
+program2 -> definition program2 .
+program2 -> .
+
+definition -> VAR ID ASSIGN initializers .
+definition -> FUN ID LP parameters RP funStatements .
+funStatements -> .
+funStatements -> ASSIGN statements .
+
+parameters -> .
+parameters -> ID parameters2 .
+parameters2 -> .
+parameters2 -> COMMA ID parameters2 .
+
+statements -> statement statements2 .
+statements2 -> .
+statements2 -> COMMA statement statements2 .
+
+statement -> expression statement2 .
+statement -> IF expression THEN statements statementIfElse END .
+statement -> WHILE expression DO statements END .
+statement -> LET definitions IN statements END .
+statement2 -> .
+statement2 -> ASSIGN expression .
+statementIfElse -> .
+statementIfElse -> ELSE statements .
+
+definitions -> definition definitions2 .
+definitions2 -> .
+definitions2 -> definition definitions2 .
+
+atomExpr -> INTCONST .
+atomExpr -> CHARCONST .
+atomExpr -> STRINGCONST .
+atomExpr -> ID functionCall .
+atomExpr -> LP expression RP .
+
+functionCall -> .
+functionCall -> LP arguments RP .
+
+postfixExpr -> atomExpr postfixExpr2 .
+postfixExpr2 -> .
+postfixExpr2 -> PTR postfixExpr2 .
+
+prefixExpr -> postfixExpr .
+prefixExpr -> NOT prefixExpr .
+prefixExpr -> ADD prefixExpr .
+prefixExpr -> SUB prefixExpr .
+prefixExpr -> PTR prefixExpr .
+
+multExpr -> prefixExpr multExpr2 .
+multExpr2 -> .
+multExpr2 -> MUL prefixExpr multExpr2 .
+multExpr2 -> DIV prefixExpr multExpr2 .
+multExpr2 -> MOD prefixExpr multExpr2 .
+
+addExpr -> multExpr addExpr2 .
+addExpr2 -> .
+addExpr2 -> ADD multExpr addExpr2 .
+addExpr2 -> SUB multExpr addExpr2 .
+
+compExpr -> addExpr compExpr2 .
+compExpr2 -> .
+compExpr2 -> EQU addExpr .
+compExpr2 -> NEQ addExpr .
+compExpr2 -> LTH addExpr .
+compExpr2 -> GTH addExpr .
+compExpr2 -> LEQ addExpr .
+compExpr2 -> GEQ addExpr .
+
+andExpr -> compExpr andExpr2 .
+andExpr2 -> .
+andExpr2 -> AND compExpr andExpr2 .
+
+orExpr -> andExpr orExpr2 .
+orExpr2 -> .
+orExpr2 -> OR andExpr orExpr2 .
+
+expression -> orExpr .
+
+arguments -> .
+arguments -> expression arguments2 .
+arguments2 -> .
+arguments2 -> COMMA expression arguments2 .
+
+initializers -> .
+initializers -> initializer initializers2 .
+initializers2 -> .
+initializers2 -> COMMA initializer initializers2 .
+
+initializer -> INTCONST initializer2 .
+initializer -> CHARCONST .
+initializer -> STRINGCONST .
+initializer2 -> MUL const .  # should ASTERISK be used instead of MUL?
+initializer2 -> .
+
+const -> INTCONST .
+const -> CHARCONST .
+const -> STRINGCONST .
